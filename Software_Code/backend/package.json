@@ -1,0 +1,27 @@
+{
+  "name": "team5-healfcare-rankings",
+  "version": "0.0.0",
+  "description": "Agile project from team 5 for rating healfcares services in USA",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha --recursive --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesTiberiusKirk/team5agile.git"
+  },
+  "author": "UoD Agile 2020 Team 5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesTiberiusKirk/team5agile/issues"
+  },
+  "homepage": "https://github.com/JamesTiberiusKirk/team5agile#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.0",
+    "supertest": "^4.0.2"
+  }
+}
