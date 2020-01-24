@@ -1,2 +1,3 @@
 Software_Code/backend/node_modules
 Software_Code/backend/dataset/*.CSV
+Software_Code/docker-volumes
