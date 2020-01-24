@@ -7,8 +7,8 @@ services:
       - 443:443
     restart: always
     volumes:
-      - ./docker-volume/cert_bot/certs/:/etc/letsencrypt/
-      - ./docker-volume/cert_bot/certs_data/:/var/www/certbot/
+      - ./docker-volumes/cert_bot/certs/:/etc/letsencrypt/
+      - ./docker-volumes/cert_bot/certs_data/:/var/www/certbot/
 
   api:
     build: ./backend/
