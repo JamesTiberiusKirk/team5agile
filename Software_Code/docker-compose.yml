@@ -1,0 +1,27 @@
+version: '3'
+services:
+  api:
+    build: ./backend/
+    restart: always
+    ports:
+      - 8080:3000
+
+  web:
+    build: ./frontend/
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+
+  db:
+    image: mariadb:10.1
+    volumes:
+      - ./docker-volumes/db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_ROOT_PASSWORD: "rootpwd"
+      MYSQL_USER: 'api-backend'
+      MYSQL_PASSWORD: 'testpassword'
+      MYSQL_DATABASE: 'healthcare'
