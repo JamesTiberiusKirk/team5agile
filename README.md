@@ -1,10 +1,13 @@
-# AgileDevelopment_templateCWRepo
-AC31007/AC51003 Agile Software Engineering - Group Number [x]
+# Agile Development
+AC31007 Agile Software Engineering - Group Number 5
 
 Group Members:
-- Member 1 (Matriculation Number)
-- Member 2 (Matriculation Number)
-- Member X (Matriculation Number)
+- Dominika Pioskik (Matriculation Number)
+- Dumitru Vulpe (170017178)
+- John Grossi (170010459)
+- Ross Dignan (160011880)
+- Sophie Darby (170025581)
+- Patrick Turton-Smith (170012743)
 
 ## Hints:
 - You may wish to change the issue tags that are in GitHub to map to different activities that you are carrying out:
