@@ -15,7 +15,7 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Reading over brief, setting out plan, discussing requirements and beginning work on user stories. Creating a draft with user stories descriptions and considering team priorities. Set up slack for communication and agreed meetup point and time.
+Created Manifesto. Reading over brief, setting out plan, discussing requirements and beginning work on user stories. Creating a draft with user stories descriptions and considering team priorities. Set up slack for communication and agreed meetup point and time.
 
 ---
 ## 23/01/20 Day [2] - Scrum Meeting summary example
@@ -33,4 +33,21 @@ N/A
 
 ### Summary of Conversation:
 Finished user stories and put it into a product backlog. Also devided tasks to begin development.
+
 ---
+## 24/01/20 Day [3] - Scrum Meeting summary example
+- The Scrum Master for this meeting was **Patrick**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+Tweeked order of product backlog. Agreed on the first sprint backlog and made sure everyone knew what
+they had to do/research over the weekend. 
