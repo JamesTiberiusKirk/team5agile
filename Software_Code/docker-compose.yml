@@ -1,5 +1,15 @@
 version: '3'
 services:
+  rproxy:
+    build: ./rproxy/
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./docker-volume/cert_bot/certs/:/etc/letsencrypt/
+      - ./docker-volume/cert_bot/certs_data/:/var/www/certbot/
+
   api:
     build: ./backend/
     restart: always
@@ -10,8 +20,8 @@ services:
     build: ./frontend/
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - 81:80
+      - 444:443
 
   db:
     image: mariadb:10.1
