@@ -35,3 +35,5 @@ services:
       MYSQL_USER: 'api-backend'
       MYSQL_PASSWORD: 'testpassword'
       MYSQL_DATABASE: 'healthcare'
+    security_opt:
+      - seccomp:unconfined
