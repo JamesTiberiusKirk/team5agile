@@ -24,7 +24,7 @@ services:
       - 444:443
 
   db:
-    image: mariadb:10.1
+    image: mysql
     volumes:
       - ./docker-volumes/db:/var/lib/mysql
     ports:
