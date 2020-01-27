@@ -9,6 +9,9 @@ services:
     volumes:
       - ./docker-volumes/cert_bot/certs/:/etc/letsencrypt/
       - ./docker-volumes/cert_bot/certs_data/:/var/www/certbot/
+    depends_on: 
+      - api
+      - web
 
   api:
     build: ./backend/
