@@ -4,15 +4,21 @@ const db_config = require('../config/db.config');
 
 var conn = mysql.createConnection(db_config);
 
-
-conn.connect(function (err) {
-    if (err) {
-        console.error('error connecting: ' + err.stack);
-        return;
+class Db {
+    constructor(){
+        this.initConnection();
     }
 
-    console.log|('MySql connected...');    
-});
+    initConnection(){
+        conn.connect(function (err) {
+            if (err) {
+                console.error('MySql error connecting: ' + err.stack);
+                return;
+            }
+        
+            console.log('MySql connected...');    
+        });
+    }
+}
 
-
-module.exports = { conn };
+module.exports = { Db };
