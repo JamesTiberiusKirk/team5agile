@@ -1,12 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HelloWorld</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="theme.css" type="text/css">
 </head>
+
 <body>
-    <h1>helloworld</h1>
+  <nav class="navbar navbar-expand-md fixed-top bg-light navbar-light" style="box-shadow: black 0px 0px 4px, black 0px 0px 4px;">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-2 text-primary" style="">
+            <a class="nav-link text-primary" href="#"><b class="text-primary">What we do</b></a>
+          </li>
+          <li class="nav-item mx-2 text-primary" style="">
+            <a class="nav-link text-primary" href="#speakers">Treatments</a>
+          </li>
+          <li class="nav-item mx-2 text-primary" style="">
+            <a class="nav-link text-primary" href="#speakers">Hospitals</a>
+          </li>
+          <li class="nav-item mx-2 text-primary" style="">
+            <a class="nav-link text-primary" href="#speakers">About</a>
+          </li>
+        </ul>
+        <a class="btn navbar-btn mx-2 btn-outline-success" href="#register">Start search</a><a class="btn navbar-btn mx-2 btn-outline-primary" href="#register">Log in</a>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 text-center text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(https://static.pingendo.com/cover-bubble-dark.svg); background-position: center center, center center;	background-size: cover, cover; background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-5 p-4 pt-4">
+          <h1 class="pt-3">Compare local treatment prices</h1>
+          <p class="mb-2">Wherever you are</p> <a class="btn btn-lg shadowed btn-success text-center align-items-center mt-4" href="#register" style="">Start search</a><i class="d-block fa fa-angle-down text-center fa-3x pt-2"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center">Find the right option for you.&nbsp;<small class="text-muted">Search by treatment or ID, and your location.</small></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-4" style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form id="c_form-h" class="" style="">
+            <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
+              <div class="col-10">
+                <div class="form-group row">
+                  <div class="col-10"><input type="text" class="form-control" id="inputnameid" placeholder="Treatment name / Treatment ID"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row"><label for="inputpasswordh" class="col-2 col-form-label" contenteditable="true">Street Address</label>
+              <div class="col-10">
+                <div class="form-group row">
+                  <div class="col-10"><input type="text" class="form-control" id="inputstreet"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">Zip Code</label>
+              <div class="col-10">
+                <div class="form-group row">
+                  <div class="col-10"><input type="text" class="form-control" id="inputzipcode"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">City</label>
+              <div class="col-10">
+                <div class="form-group row">
+                  <div class="col-10"><input type="text" class="form-control" id="inputcity"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">State</label>
+              <div class="col-10">
+                <div class="form-group row">
+                  <div class="col-10">
+                    <select>
+                        <option value="select-state">Select state</option>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AR">AR</option>	
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>	
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>	
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>	
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>			
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>	
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn navbar-btn btn-outline-success pl-4 pr-4" href="#register">Submit</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="">Select the best option from the list below.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="">
+          <div class="btn-group" style="">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sory by</button>
+            <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
+            </div>
+          </div>
+          <div class="btn-group" style="">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
+            <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
+            </div>
+          </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group</h5> <small>3 days ago</small>
+              </div>
+              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> <small>Donec id elit non mi porta.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group </h5> <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="pagination">
+                <li class="page-item"> <a class="page-link" href="#"> <span>«</span></a> </li>
+                <li class="page-item active"> <a class="page-link" href="#213B63">1</a> </li>
+                <li class="page-item"> <a class="page-link" href="#">2</a> </li>
+                <li class="page-item"> <a class="page-link" href="#">3</a> </li>
+                <li class="page-item"> <a class="page-link" href="#">4</a> </li>
+                <li class="page-item"> <a class="page-link" href="#"> <span>»</span></a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6"><iframe width="100%" height="400" src="https://maps.google.com/maps?q=New%20York&amp;z=14&amp;output=embed" scrolling="no" frameborder="0"></iframe></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="col-md-12 text-center d-md-flex align-items-center">
+            <ul class="nav mx-md-auto d-flex justify-content-center">
+              <li class="nav-item"> <a class="nav-link active" href="#">Home</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex justify-content-md-between my-2 col-md-6 align-items-center justify-content-center"> <a href="#">
+              <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
+            </a> <a href="#">
+              <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+            </a> <a href="#">
+              <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+            </a> </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mt-2 mb-0">© 2020 Craneware. All rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" style=""></script>
 </body>
+
 </html>
