@@ -2,7 +2,7 @@
 AC31007 Agile Software Engineering - Group Number 5
 
 Group Members:
-- Dominika Piosik (Matriculation Number)
+- Dominika Piosik 170018134)
 - Dumitru Vulpe (170017178)
 - John Grossi (170010459)
 - Ross Dignan (160011880)
