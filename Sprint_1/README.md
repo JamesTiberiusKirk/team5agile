@@ -67,7 +67,7 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Database was set up and populated.
-Webiste basic skeleton completed
-Live location enabled
-Made a start on 'Here' API
+Database was set up and populated.  
+Webiste basic skeleton completed  
+Live location enabled  
+Made a start on 'Here' API  
