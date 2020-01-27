@@ -1,11 +1,8 @@
 const mysql = require('mysql');
 
-var conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'api-backend',
-    password: 'betterpwd',
-    database: 'healthcare'
-});
+const db_config = require('../config/db.config');
+
+var conn = mysql.createConnection(db_config);
 
 
 conn.connect(function (err) {
