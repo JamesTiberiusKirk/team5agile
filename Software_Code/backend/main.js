@@ -1,10 +1,14 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 
 const { Db } = require('./db/db');
 
+const app = express();
+
+
 db = new Db();
 
+// Middleware
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE');
@@ -13,7 +17,10 @@ app.use((req, res, next) => {
 
   next();
 });
+app.use(bodyParser.json());
 
+
+// Routes
 app.get('/', (req, res) => {
   res.status(200).send('ok');
   console.log('[GET] /');
@@ -21,7 +28,31 @@ app.get('/', (req, res) => {
 
 
 app.post('/provider/add', (req, res) => {
-  
+  let newPrv;
+  let sql = '';
+  try {
+    let bodyData = req.body;
+    
+    newPrv = {
+      provider_ID: bodyData.provider_ID,
+      provider_Name: bodyData.provider_Name,
+      provider_StreetAdd: bodyData.provider_StreetAdd,
+      provider_City: bodyData.provider_City,
+      provider_State: bodyData.provider_State,
+      provider_referral: bodyData.provider_referral
+    };
+
+
+  } catch (e) {
+    console.log(`[POST] ${req.url} error: ${e}`);
+    return res.status(500).send(e.message);
+  }
+
+
+
+  res.status(201).send('added')
+  console.log(`[POST] ${req.url} 201 ${JSON.stringify(newPrv)}`);
+
 });
 
 
