@@ -4,6 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.js"
+    integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+    crossorigin="anonymous">
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="theme.css" type="text/css">
 </head>
@@ -18,16 +23,16 @@
             <a class="nav-link text-primary" href="#"><b class="text-primary">What we do</b></a>
           </li>
           <li class="nav-item mx-2 text-primary" style="">
-            <a class="nav-link text-primary" href="#speakers">Treatments</a>
+            <a class="nav-link text-primary" href="#">Treatments</a>
           </li>
           <li class="nav-item mx-2 text-primary" style="">
-            <a class="nav-link text-primary" href="#speakers">Hospitals</a>
+            <a class="nav-link text-primary" href="#">Hospitals</a>
           </li>
           <li class="nav-item mx-2 text-primary" style="">
-            <a class="nav-link text-primary" href="#speakers">About</a>
+            <a class="nav-link text-primary" href="#">About</a>
           </li>
         </ul>
-        <a class="btn navbar-btn mx-2 btn-outline-success" href="#register">Start search</a><a class="btn navbar-btn mx-2 btn-outline-primary" href="#register">Log in</a>
+        <a class="btn navbar-btn mx-2 btn-outline-success" href="#">Start search</a><a class="btn navbar-btn mx-2 btn-outline-primary" href="#register">Log in</a>
       </div>
     </div>
   </nav>
@@ -146,7 +151,20 @@
               </div>
             </div>
             <a class="btn navbar-btn btn-outline-success pl-4 pr-4" href="#register">Submit</a>
+            <a class="btn navbar-btn btn-outline-success pl-4 pr-4" id="location-button">Use current location</a>
           </form>
+              <script>
+                $('#location-button').click(function(){
+        
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position){
+                            console.log(position)
+                        });  
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                });
+            </script>
         </div>
       </div>
     </div>
