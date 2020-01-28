@@ -51,3 +51,23 @@ N/A
 ### Summary of Conversation:
 Tweeked order of product backlog. Agreed on the first sprint backlog and made sure everyone knew what
 they had to do/research over the weekend. 
+
+---
+## 27/01/20 Day [6] - Scrum Meeting summary example
+- The Scrum Master for this meeting was **Patrick**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+Database was set up and populated.  
+Webiste basic skeleton completed  
+Live location enabled  
+Made a start on 'Here' API  
