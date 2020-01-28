@@ -26,29 +26,64 @@ app.get('/', (req, res) => {
   console.log('[GET] /');
 });
 
+app.get('/providers/', (req, res) => {
+  /*let sql = `SELECT * FROM healthcare.provider WHERE;`
+  db.conn.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+      return console.log(err);
+    }
+    //console.log(result);
+    res.status(200).send(result);
+  });*/
+  res.status(200).send("ok");
+});
 
 app.post('/provider/add', (req, res) => {
   let newPrv;
-  let sql = '';
+  let sql;
   try {
     let bodyData = req.body;
-    
+
     newPrv = {
       provider_ID: bodyData.provider_ID,
       provider_Name: bodyData.provider_Name,
       provider_StreetAdd: bodyData.provider_StreetAdd,
       provider_City: bodyData.provider_City,
       provider_State: bodyData.provider_State,
+      provider_Zip: bodyData.provider_Zip,
       provider_referral: bodyData.provider_referral
     };
 
+    /*sql = `CALL insertProvider( ${newPrv.provider_ID}, 
+                                ${newPrv.provider_Name}, 
+                                ${newPrv.provider_StreetAdd}, 
+                                ${newPrv.provider_City}, 
+                                ${newPrv.provider_State} 
+                                ${newPrv.provider_Zip}, 
+                                ${newPrv.provider_referral})`;*/
 
+/*
+    sql = `INSERT INTO 'provider' ('provider_ID','provider_Name', 
+            'provider_StreetAdd', 'provider_City', 'provider_State', 
+            'provider_ Zip', 'provider_referral') 
+          VALUES ( ${newPrv.provider_ID}, 
+            ${newPrv.provider_Name}, 
+            ${newPrv.provider_StreetAdd}, 
+            ${newPrv.provider_City}, 
+            ${newPrv.provider_State} 
+            ${newPrv.provider_Zip}, 
+            ${newPrv.provider_referral});`
+
+    db.conn.query(sql, (err, result) => {
+      if (err) return console.log(err);
+      console.log(result);
+    });
+    */
   } catch (e) {
     console.log(`[POST] ${req.url} error: ${e}`);
     return res.status(500).send(e.message);
   }
-
-
 
   res.status(201).send('added')
   console.log(`[POST] ${req.url} 201 ${JSON.stringify(newPrv)}`);
