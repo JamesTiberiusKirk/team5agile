@@ -2,21 +2,20 @@ const mysql = require('mysql');
 
 const db_config = require('../config/db.config');
 
-var conn = mysql.createConnection(db_config);
-
 class Db {
-    constructor(){
-        this.initConnection();
+    constructor() {
+        this.conn = mysql.createConnection(db_config);
+        this.initConnection(this.conn);
     }
 
-    initConnection(){
-        conn.connect(function (err) {
+    initConnection(conn) {
+        conn.connect((err) => {
             if (err) {
                 console.error('MySql error connecting: ' + err.stack);
                 return;
             }
-        
-            console.log('MySql connected...');    
+
+            console.log('MySql connected...');
         });
     }
 }
