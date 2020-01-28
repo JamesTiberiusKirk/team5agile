@@ -4,7 +4,7 @@
   "description": "Agile project from team 5 for rating healfcares services in USA",
   "main": "main.js",
   "scripts": {
-    "test": "mocha --recursive --exit"
+    "test": "./node_modules/.bin/mocha --recursive --exit ./tests/api.test.js"
   },
   "repository": {
     "type": "git",
