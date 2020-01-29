@@ -44,22 +44,24 @@
 You run procedures by using the CALL function in SQL. For example CALL sortRefineOptions(**necessary parameters**).
 ### Available Procedures (Queries)
 - getAllOptions()
-    Returns the whole dataset
+Returns the whole dataset
 - getRefineOptions(procedure id, procedure name/description, provider name, provider state)
-    Returns an unsorted set of data from a query matching any of the parameters entered
+Returns an unsorted set of data from a query matching any of the parameters entered
 - sortRefineOptions(procedure id, procedure name/description, provider name, provider state, column to sort by, sort ASC or DESC)
-    Returns a set of data from a query matching any of the parameters entered, and sorted on the specified column either ascending or descending (ASC or DESC)
+Returns a set of data from a query matching any of the parameters entered, and sorted on the specified column either ascending or descending (ASC or DESC)
 - checkUser(usernameToSearch, passwordToCheck)
-    Returns True if user exists and entered correct password
-    Returns False if user does not exist, or they do exist but entered wrong password
+Returns True if user exists and entered correct password
+Returns False if user does not exist, or they do exist but entered wrong password
 
 ### Available Procedures (Add/Update/Remove Records)
 - insertProcedure(procedure id, procedure definition)
-    Adds new record to Procedure table with specified ID and definition
+Adds new record to Procedure table with specified ID and definition
 - insertProvider(provider id, provider name, provider street address, provider state, provider ZIP Code, provider referral region)
-    Adds new record to Provider table with specified details
+Adds new record to Provider table with specified details
 - insertCosts(procedure id, provider id, avg covered charges, total payments, avg medicare payments)
-    Adds new record to Costs table with specified details.
-    ** Procedure and Provider ID's must already exist in their respective tables, or procedure will fail **
+Adds new record to Costs table with specified details.
+**Procedure and Provider ID's must already exist in their respective tables, or procedure will fail**
 - addNewUser(username, password)
-    Adds new record to Users table with specified username and password
+Adds new record to Users table with specified username and password
+- addCoordsExistingProvider(provider id, latitude, longitude)
+Adds/updates coordinates to existing provider record, coordinates must be in decimal format.
