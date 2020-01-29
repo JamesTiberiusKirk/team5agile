@@ -37,8 +37,7 @@ app.get('/', (req, res) => {
 app.get('/providers', (req, res) => {
   let queryParams = req.query.search_query;
   if (queryParams) {
-    let sql = `SELECT * FROM healthcare.provider WHERE provider_Name LIKE "%${queryParams}%";`
-
+    let sql = `SELECT * FROM healthcare.provider WHERE provider_Name LIKE "%${queryParams}%" OR provider_ID="${queryParams}";`
     db.conn.query(sql, (err, result) => {
       if (err) {
         res.status(500).send(err);
