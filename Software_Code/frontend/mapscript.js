@@ -270,6 +270,12 @@
           }
         ]
       };
+
+      //Add zoom and rotation controls to the map
+      map.addControl(new mapboxgl.NavigationControl());
+
+      //Add full screen option to map
+      map.addControl(new mapboxgl.FullscreenControl());
       
       /**
        * Assign a unique id to each store. You'll use this `id`
