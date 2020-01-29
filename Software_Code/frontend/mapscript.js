@@ -376,6 +376,12 @@ geolocate.on('geolocate', function(e) {
        * Add a listing for each store to the sidebar.
       **/
       function buildLocationList(data) {
+        var x = document.getElementById("listings");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
         data.features.forEach(function(store, i){
           /**
            * Create a shortcut for `store.properties`,
