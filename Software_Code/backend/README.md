@@ -17,7 +17,7 @@
         - 401 Wrong username/password
 
 ## General App
-- GET /treatments/?query&zip_code
+- GET /procedures/?search_query=testQuery&zip_code=testZip
     - Request:
         - query pattern in the url
         - optional zip_code in the url for location based search
@@ -34,6 +34,39 @@
         avg_Medicare_Payemnt,
         procedure_ID,
         procedure_Def
+    }
+]
+```
+- GET /providers/?search_query=testQquery
+    - Request:
+        - Query pattern in the URL
+    - Resolve:
+        - JSON list
+```
+[
+    {
+        "provider_ID": 450419,
+        "provider_Name": "TEXAS HEALTH HARRIS METHODIST HOSPITAL AZLE",
+        "provider_StreetAdd": "108 DENVER TRAIL",
+        "provider_City": "AZLE",
+        "provider_State": "TX",
+        "provider_Zip": "76020",
+        "provider_referral": "TX - Fort Worth"
+    }
+]
+```
+- GET /zip2coords?zip=testzip
+    - Request:
+        - URL parameter for a zip
+    - Resolve:
+        - JSON list
+
+```
+[
+    {
+        "zip_Code": "03875",
+        "zip_Lat": 43.895078,
+        "zip_Long": -71.189275
     }
 ]
 ```

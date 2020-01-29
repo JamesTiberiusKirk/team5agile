@@ -29,9 +29,21 @@ app.use(bodyParser.json());
 
 
 // Routes
-app.get('/', (req, res) => {
-  res.status(200).send('ok');
-  console.log('[GET] /');
+app.get('/zip2coords', (req, res) => {
+  let zip = req.query.zip;
+  if (zip) {
+    let sql = `SELECT * FROM healthcare.zip_coords WHERE zip_Code=${zip}`;
+    db.conn.query(sql, (result,err)=>{
+      if (err){
+        res.status(500).send(err);
+        return console.log(`[GET] /providers error: ${err}`); 
+      }
+
+      res.sendStatus(200).send(result);
+    });
+  } else {
+    res.status(400).send('Please provide a zip code'); 
+  }
 });
 
 app.get('/providers', (req, res) => {
