@@ -91,7 +91,10 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Backend members agreed on what tasks need to be achieved by the end of today  
+Backend members agreed on what tasks need to be achieved by the end of today
+Started work on search features with provider
+Worked on adding, updating and deleting from db
+Created SQL statements for future coding
 Frontend continue with map integration
 
 ---
