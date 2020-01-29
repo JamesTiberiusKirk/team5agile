@@ -50,6 +50,22 @@ app.get('/providers', (req, res) => {
   }
 });
 
+app.get('/procedures', (req, res) => {
+  let queryParams = req.query.search_query;
+  if (queryParams) {
+    let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Covered_Charges","ASC");`
+    db.conn.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+        return console.log(`[GET] /procedures error: ${err}`);
+      }
+      res.status(200).send(result);
+    });
+  } else {
+    res.status(405).send('Need to provide a seach query');
+  }
+});
+
 app.post('/provider/add', (req, res) => {
   let newPrv;
   let sql;
