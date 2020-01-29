@@ -71,3 +71,21 @@ Database was set up and populated.
 Webiste basic skeleton completed  
 Live location enabled  
 Made a start on 'Here' API  
+
+---
+## 28/01/20 Day [7] - Scrum Meeting summary example
+- The Scrum Master for this meeting was **Patrick**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+agreed on what tasks were to be done by which members on the back end. And will start today
+continue with map integration
