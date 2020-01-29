@@ -21,14 +21,40 @@
       });
 
 // Add geolocate control to the map.
-      map.addControl(
+    /*  map.addControl(
       new mapboxgl.GeolocateControl({
           positionOptions: {
               enableHighAccuracy: true
           },
           trackUserLocation: true
         })
-      );
+      );*/
+
+  /*  function findLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position)
+          });
+        }
+    }
+
+    navigator.geolocation.addEventListener('geolocate', findLocation);*/
+
+// Track user location (sends multiple requests)
+// var geolocate = new mapboxgl.GeolocateControl({trackUserLocation: true});
+
+var geolocate = new mapboxgl.GeolocateControl();
+
+map.addControl(geolocate);
+
+geolocate.on('geolocate', function(e) {
+      var lon = e.coords.longitude;
+      var lat = e.coords.latitude
+      var position = [lon, lat];
+      console.log(position);
+});
+
+
 
       var stores = {
         "type": "FeatureCollection",
@@ -270,12 +296,6 @@
           }
         ]
       };
-
-      //Add zoom and rotation controls to the map
-      map.addControl(new mapboxgl.NavigationControl());
-
-      //Add full screen option to map
-      map.addControl(new mapboxgl.FullscreenControl());
       
       /**
        * Assign a unique id to each store. You'll use this `id`
