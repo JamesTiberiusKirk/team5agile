@@ -91,11 +91,11 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Backend members agreed on what tasks need to be achieved by the end of today
-Started work on search features with provider
-Worked on adding, updating and deleting from db
-Created SQL statements for future coding
-Frontend continue with map integration
+Backend members agreed on what tasks need to be achieved by the end of today  
+Started work on search features with provider 
+Worked on adding, updating and deleting from db 
+Created SQL statements for future coding  
+Frontend continue with map integration  
 
 ---
 ## 29/01/20 Day [8] - Scrum Meeting Summary  
