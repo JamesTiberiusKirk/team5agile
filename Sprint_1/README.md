@@ -71,7 +71,7 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Database was set up and populated.  
+Database was set up  
 Webiste basic skeleton completed  
 Live location enabled  
 Made a start on 'Here' API  
@@ -91,6 +91,7 @@ N/A
 N/A
 
 ### Summary of Conversation:
+Database was populated. 
 Backend members agreed on what tasks need to be achieved by the end of today  
 Started work on search features with provider     
 Worked on adding, updating and deleting from database     
@@ -119,3 +120,21 @@ Continue research on GeoJSON data
 Backend completed work on search querys for provider and procedure   
 Coded route for provider location, i.e. longitude and latitude
 Started calculation for distance between locations
+
+## 30/01/20 Day [9] - Scrum Meeting Summary  
+- The Scrum Master for this meeting was **Patrick**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+Checking over documentation is in a good and clear format
+continue calculation for distance between locations and have it completed by tomorrrow
+Checking map works with new feature
