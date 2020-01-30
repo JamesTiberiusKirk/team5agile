@@ -1,4 +1,10 @@
+function openNav() {
+  document.getElementById("myNav").style.width = "33.3333%";
+}
 
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
       // This will let you use the .remove() function later on
       if (!('remove' in Element.prototype)) {
         Element.prototype.remove = function() {
