@@ -1048,3 +1048,8 @@
     input[type="button"].btn-block {
       width: 100%; }
 
+    .submit-button {
+      background:none;
+      border:none;
+    }
+
