@@ -57,7 +57,7 @@ map.addControl(new mapboxgl.NavigationControl());
 var geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl
-});
+  });
 
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
@@ -472,3 +472,23 @@ geolocate.on('geolocate', function(e) {
         '<h4>' + currentFeature.properties.address + '</h4>')
       .addTo(map);
   }
+
+
+//https://docs.mapbox.com/mapbox.js/example/v1.0.0/map-center-geocoding/
+// var geocoder = L.mapbox.geocoder('mapbox.places');
+
+// var map = L.mapbox.map('map')
+// .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+// geocoder.query('Chester, NJ', showMap);
+
+// function showMap(err, data) {
+// // The geocoder can return an area, like a city, or a
+// // point, like an address. Here we handle both cases,
+// // by fitting the map bounds to an area or zooming to a point.
+// if (data.lbounds) {
+//     map.fitBounds(data.lbounds);
+// } else if (data.latlng) {
+//     map.setView([data.latlng[0], data.latlng[1]], 13);
+// }
+// }
