@@ -137,8 +137,45 @@
                   </div>
                 </div>
                 <!-- Use any element to open/show the overlay navigation menu -->
-                <span onclick="openNav()"><button class="submit-button" onclick="buildLocationList()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
+                <span onclick="openNav()"><button class="submit-button" onclick="getProviders()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
               </form>
+
+              Search: <input type="text" id="place" value="">
+              <button onclick="getProviders()">Submit</button>
+          
+                <div id="container"></div>
+                <script>
+                    function insert(prov) {
+                      
+                      var div = document.getElementById('container');
+                      var child_div = document.createElement('div');
+                      var prov_name = prov.provider_Name;
+                      child_div.innerHTML = `<p>${prov_name}</p>`;
+                      div.appendChild(child_div)
+                    }
+                    function getProviders() {
+                      
+                      var url = `https://api.team5agile.dumitruvulpe.com`;
+                      var uri = `/providers?search_query=`;
+                      var placename = document.getElementById("place").value;
+                      
+                      fetch(url+uri+placename)
+                        .then((res) => {
+                          return res.json();
+                        })
+                        .then((data) => {
+                          console.log(data)
+                          data.forEach(e => {
+                            insert(e)
+                          });
+                        })
+                        .catch((error) => {
+                          console.log(error)
+                        });
+
+                    }
+                </script>
+            
             </div>
           </div>
         </div>
