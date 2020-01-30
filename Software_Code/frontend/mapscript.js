@@ -70,7 +70,7 @@ geolocate.on('geolocate', function(e) {
 
 
 
-  var hospitals = {
+  var provider = {
     "type": "FeatureCollection",
     "features": [
       {
@@ -83,14 +83,17 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 234-7336",
-          "phone": "2022347336",
-          "address": "1471 P St NW",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "at 15th St NW",
-          "postalCode": "20005",
-          "state": "D.C."
+          "provider_Name": "TEXAS HEALTH HARRIS METHODIST HOSPITAL AZLE",
+          "provider_StreetAdd": "108 DENVER TRAIL6",
+          "provider_City": "AZLE",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at 15th St NW",
+          "procedure_Def": "20005",
+          "provider_ID": 450419,
+          "provider_State": "TX",
+          "provider_Zip": "76020",
+          "provider_referral": "TX - Fort Worth"
         }
       },
       {
@@ -103,14 +106,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 507-8357",
-          "phone": "2025078357",
-          "address": "2221 I St NW",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "at 22nd St NW",
-          "postalCode": "20037",
-          "state": "D.C."
+          "provider_Name": "(202) 507-8357",
+          "provider_StreetAdd": "2025078357",
+          "provider_City": "2221 I St NW",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at 22nd St NW",
+          "procedure_Def": "20037"
         }
       },
       {
@@ -123,14 +125,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 387-9338",
-          "phone": "2023879338",
-          "address": "1512 Connecticut Ave NW",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "at Dupont Circle",
-          "postalCode": "20036",
-          "state": "D.C."
+          "provider_Name": "(202) 387-9338",
+          "provider_StreetAdd": "2023879338",
+          "provider_City": "1512 Connecticut Ave NW",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at Dupont Circle",
+          "procedure_Def": "20036"
         }
       },
       {
@@ -143,14 +144,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 337-9338",
-          "phone": "2023379338",
-          "address": "3333 M St NW",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "at 34th St NW",
-          "postalCode": "20007",
-          "state": "D.C."
+          "provider_Name": "(202) 337-9338",
+          "provider_StreetAdd": "2023379338",
+          "provider_City": "3333 M St NW",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at 34th St NW",
+          "procedure_Def": "20007"
         }
       },
       {
@@ -163,14 +163,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 547-9338",
-          "phone": "2025479338",
-          "address": "221 Pennsylvania Ave SE",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "btwn 2nd & 3rd Sts. SE",
-          "postalCode": "20003",
-          "state": "D.C."
+          "provider_Name": "(202) 547-9338",
+          "provider_StreetAdd": "2025479338",
+          "provider_City": "221 Pennsylvania Ave SE",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "btwn 2nd & 3rd Sts. SE",
+          "procedure_Def": "20003"
         }
       },
       {
@@ -183,11 +182,10 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "address": "8204 Baltimore Ave",
-          "city": "College Park",
-          "country": "United States",
-          "postalCode": "20740",
-          "state": "MD"
+          "provider_City": "8204 Baltimore Ave",
+          "avg_Total_Payments": "College Park",
+          "avg_Medicare_Payment": "United States",
+          "procedure_Def": "20740"
         }
       },
       {
@@ -200,14 +198,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(301) 654-7336",
-          "phone": "3016547336",
-          "address": "4831 Bethesda Ave",
+          "provider_Name": "(301) 654-7336",
+          "provider_StreetAdd": "3016547336",
+          "provider_City": "4831 Bethesda Ave",
           "cc": "US",
-          "city": "Bethesda",
-          "country": "United States",
-          "postalCode": "20814",
-          "state": "MD"
+          "avg_Total_Payments": "Bethesda",
+          "avg_Medicare_Payment": "United States",
+          "procedure_Def": "20814"
         }
       },
       {
@@ -220,14 +217,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(571) 203-0082",
-          "phone": "5712030082",
-          "address": "11935 Democracy Dr",
-          "city": "Reston",
-          "country": "United States",
-          "crossStreet": "btw Explorer & Library",
-          "postalCode": "20190",
-          "state": "VA"
+          "provider_Name": "(571) 203-0082",
+          "provider_StreetAdd": "5712030082",
+          "provider_City": "11935 Democracy Dr",
+          "avg_Total_Payments": "Reston",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "btw Explorer & Library",
+          "procedure_Def": "20190"
         }
       },
       {
@@ -240,14 +236,13 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(703) 522-2016",
-          "phone": "7035222016",
-          "address": "4075 Wilson Blvd",
-          "city": "Arlington",
-          "country": "United States",
-          "crossStreet": "at N Randolph St.",
-          "postalCode": "22203",
-          "state": "VA"
+          "provider_Name": "(703) 522-2016",
+          "provider_StreetAdd": "7035222016",
+          "provider_City": "4075 Wilson Blvd",
+          "avg_Total_Payments": "Arlington",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at N Randolph St.",
+          "procedure_Def": "22203"
         }
       },
       {
@@ -260,13 +255,12 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(610) 642-9400",
-          "phone": "6106429400",
-          "address": "68 Coulter Ave",
-          "city": "Ardmore",
-          "country": "United States",
-          "postalCode": "19003",
-          "state": "PA"
+          "provider_Name": "(610) 642-9400",
+          "provider_StreetAdd": "6106429400",
+          "provider_City": "68 Coulter Ave",
+          "avg_Total_Payments": "Ardmore",
+          "avg_Medicare_Payment": "United States",
+          "procedure_Def": "19003"
         }
       },
       {
@@ -279,13 +273,12 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(215) 386-1365",
-          "phone": "2153861365",
-          "address": "3925 Walnut St",
-          "city": "Philadelphia",
-          "country": "United States",
-          "postalCode": "19104",
-          "state": "PA"
+          "provider_Name": "(215) 386-1365",
+          "provider_StreetAdd": "2153861365",
+          "provider_City": "3925 Walnut St",
+          "avg_Total_Payments": "Philadelphia",
+          "avg_Medicare_Payment": "United States",
+          "procedure_Def": "19104"
         }
       },
       {
@@ -298,26 +291,25 @@ geolocate.on('geolocate', function(e) {
           ]
         },
         "properties": {
-          "phoneFormatted": "(202) 331-3355",
-          "phone": "2023313355",
-          "address": "1901 L St. NW",
-          "city": "Washington DC",
-          "country": "United States",
-          "crossStreet": "at 19th St",
-          "postalCode": "20036",
-          "state": "D.C."
+          "provider_Name": "(202) 331-3355",
+          "provider_StreetAdd": "2023313355",
+          "provider_City": "1901 L St. NW",
+          "avg_Total_Payments": "Washington DC",
+          "avg_Medicare_Payment": "United States",
+          "procedure_ID": "at 19th St",
+          "procedure_Def": "20036"
         }
       }
     ]
   };
       
   /**
-   * Assign a unique id to each store. You'll use this `id`
+   * Assign a unique id to each provider. You'll use this `id`
    * later to associate each point on the map with a listing
    * in the sidebar.
   */
-  hospitals.features.forEach(function(hospitals, i){
-    hospitals.properties.id = i;
+  provider.features.forEach(function(provider, i){
+    provider.properties.id = i;
   });
 
   /**
@@ -328,9 +320,9 @@ geolocate.on('geolocate', function(e) {
      * This is where your '.addLayer()' used to be, instead
      * add only the source without styling a layer
     */
-    map.addSource("places", {
+    map.addSource("provider", {
       "type": "geojson",
-      "data": hospitals
+      "data": provider
     });
 
     /**
@@ -338,16 +330,16 @@ geolocate.on('geolocate', function(e) {
      * - The location listings on the side of the page
      * - The markers onto the map
     */
-    buildLocationList(hospitals);
+    buildLocationList(provider);
     addMarkers();
   });
 
   /**
-   * Add a marker to the map for every store listing.
+   * Add a marker to the map for every provider listing.
   **/
   function addMarkers() {
     /* For each feature in the GeoJSON object above: */
-    hospitals.features.forEach(function(marker) {
+    provider.features.forEach(function(marker) {
       /* Create a div element for the marker. */
       var el = document.createElement('div');
       /* Assign a unique `id` to the marker. */
@@ -366,13 +358,13 @@ geolocate.on('geolocate', function(e) {
       /**
        * Listen to the element and when it is clicked, do three things:
        * 1. Fly to the point
-       * 2. Close all other popups and display popup for clicked store
+       * 2. Close all other popups and display popup for clicked provider
        * 3. Highlight listing in sidebar (and remove highlight for all other listings)
       **/
       el.addEventListener('click', function(e){
         /* Fly to the point */
-        flyToStore(marker);
-        /* Close all other popups and display popup for clicked store */
+        flyToProvider(marker);
+        /* Close all other popups and display popup for clicked provider */
         createPopUp(marker);
         /* Highlight listing in sidebar */
         var activeItem = document.getElementsByClassName('active');
@@ -387,7 +379,7 @@ geolocate.on('geolocate', function(e) {
   }
 
   /**
-   * Add a listing for each store to the sidebar.
+   * Add a listing for each provider to the sidebar.
   **/
   function buildLocationList(data) {
     var x = document.getElementById("listings");
@@ -396,12 +388,12 @@ geolocate.on('geolocate', function(e) {
       } else {
         x.style.display = "none";
       }
-    data.features.forEach(function(store, i){
+    data.features.forEach(function(provider, i){
       /**
-       * Create a shortcut for `store.properties`,
+       * Create a shortcut for `provider.properties`,
        * which will be used several times below.
       **/
-      var prop = store.properties;
+      var prop = provider.properties;
 
       /* Add a new listing section to the sidebar. */
       var listings = document.getElementById('listings');
@@ -416,27 +408,27 @@ geolocate.on('geolocate', function(e) {
       link.href = '#';
       link.className = 'title';
       link.id = "link-" + prop.id;
-      link.innerHTML = prop.address;
+      link.innerHTML = prop.provider_City;
 
       /* Add details to the individual listing. */
       var details = listing.appendChild(document.createElement('div'));
-      details.innerHTML = prop.city;
-      if (prop.phone) {
-        details.innerHTML += ' · ' + prop.phoneFormatted;
+      details.innerHTML = prop.avg_Total_Payments;
+      if (prop.provider_StreetAdd) {
+        details.innerHTML += ' · ' + prop.provider_Name;
       }
 
       /**
        * Listen to the element and when it is clicked, do four things:
-       * 1. Update the `currentFeature` to the store associated with the clicked link
+       * 1. Update the `currentFeature` to the provider associated with the clicked link
        * 2. Fly to the point
-       * 3. Close all other popups and display popup for clicked store
+       * 3. Close all other popups and display popup for clicked provider
        * 4. Highlight listing in sidebar (and remove highlight for all other listings)
       **/
       link.addEventListener('click', function(e){
         for (var i=0; i < data.features.length; i++) {
           if (this.id === "link-" + data.features[i].properties.id) {
             var clickedListing = data.features[i];
-            flyToStore(clickedListing);
+            flyToProvider(clickedListing);
             createPopUp(clickedListing);
           }
         }
@@ -453,7 +445,7 @@ geolocate.on('geolocate', function(e) {
    * Use Mapbox GL JS's `flyTo` to move the camera smoothly
    * a given center point.
   **/
-  function flyToStore(currentFeature) {
+  function flyToProvider(currentFeature) {
     map.flyTo({
       center: currentFeature.geometry.coordinates,
       zoom: 15
@@ -469,7 +461,7 @@ geolocate.on('geolocate', function(e) {
     var popup = new mapboxgl.Popup({closeOnClick: false})
       .setLngLat(currentFeature.geometry.coordinates)
       .setHTML('<h3>Sweetgreen</h3>' +
-        '<h4>' + currentFeature.properties.address + '</h4>')
+        '<h4>' + currentFeature.properties.provider_City + '</h4>')
       .addTo(map);
   }
 
