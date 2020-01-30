@@ -113,7 +113,9 @@ N/A
 
 ### Summary of Conversation:
 Frontend has working map (using MapBox)  
-  Working on integrating map into website  
-  Continue research on how to sort by relevance  
-  Continue research on GeoJSON data  
-Backend 
+Working on integrating map into website  
+Continue research on how to sort by relevance  
+Continue research on GeoJSON data  
+Backend completed work on search querys for provider and procedure   
+Coded route for provider location, i.e. longitude and latitude
+Started calculation for distance between locations
