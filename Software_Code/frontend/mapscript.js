@@ -390,9 +390,7 @@ geolocate.on('geolocate', function(e) {
   function buildLocationList(data) {
     var x = document.getElementById("listings");
       if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
+       x.style.display = "block";
       }
     data.features.forEach(function(provider, i){
       /**
