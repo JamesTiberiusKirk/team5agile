@@ -61,6 +61,7 @@
   .listings {
     height:100%;
     overflow:auto;
+    padding-top: 60px;
     padding-bottom:60px;
   }
 
@@ -1077,21 +1078,20 @@
   padding: 8px;
   text-decoration: none;
   font-size: 20px;
-  text-transform: capitalize;
-  color: #818181;
+  color: #ffffff;
   display: block;
   transition: 0.0s;
 }
 
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  color: #d2d7df;
 }
 
 .overlay .closebtn {
   position: absolute;
   top: 12px;
   left: 15px;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 @media screen and (max-height: 450px) {
@@ -1101,5 +1101,11 @@
   top: 15px;
   right: 35px;
   }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
