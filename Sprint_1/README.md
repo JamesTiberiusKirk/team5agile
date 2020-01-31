@@ -136,5 +136,22 @@ N/A
 
 ### Summary of Conversation:
 Checking over documentation is in a good and clear format
-continue calculation for distance between locations and have it completed by tomorrrow
+Continue calculation for distance between locations and have it completed by tomorrrow
 Checking map works with new feature
+
+## 31/01/20 Day [10] - Scrum Meeting Summary  
+- The Scrum Master for this meeting was **Patrick**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+Had sprint review with company
+Changed sprint 2 to match the comments from the sprint review
