@@ -7,7 +7,7 @@ class Db {
         this.conn;
         this.initConnection();
         this.handleConnection();
-        // this.handleError();
+        this.handleError();
     }
 
     initConnection() {
