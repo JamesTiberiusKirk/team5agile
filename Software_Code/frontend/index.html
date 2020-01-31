@@ -81,6 +81,60 @@
       </div>
     </a>
     
+    
+    
+<!-- Search section --> 
+  <div class="py-4" style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Search for Procedure: <input type="text" id="place" value=""> <button onclick="getProcedures()">Submit</button></h5>
+
+
+            <div id="container"></div>
+            <script>
+
+                function insert(prov) {
+
+                  var div = document.getElementById('container');
+                  var child_div = document.createElement('div');
+                  var pro_name = prov.procedure_Def;
+                  var prov_name = prov.provider_Name;
+                  var pro_price = prov.avg_Medicare_Payments;
+                  child_div.innerHTML = `<p>${prov_name}: ${pro_name}: $${pro_price} </p>`;
+                  div.appendChild(child_div)
+
+                }
+                function getProcedures() {
+                  //addFeature({});
+                  var url = `https://api.team5agile.dumitruvulpe.com`;
+                  var uri = `/procedures/?search_query=`;
+                  var placename = document.getElementById("place").value;
+
+                  fetch(url+uri+placename)
+                    .then((res) => {
+                      return res.json();
+                    })
+                    .then((data) => {
+                      console.log(data[0])
+                      data[0].forEach(e => {
+                        insert(e)
+                      });
+                    })
+                    .catch((error) => {
+                      console.log(error)
+                    });
+
+                }
+            </script>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    
+
+    
   <!-- iframe map section -->
     <a id="map">
       <div class="py-5">
