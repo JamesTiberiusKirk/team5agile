@@ -1,0 +1,9 @@
+CREATE TABLE `users` (
+    `user_ID` INT NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(45) NOT NULL,
+    `password` VARCHAR(45) NOT NULL,
+    `hashsalt` VARCHAR(45) DEFAULT NULL,
+    PRIMARY KEY (`user_ID`),
+    UNIQUE KEY `user_ID_UNIQUE` (`user_ID`),
+    UNIQUE KEY `username_UNIQUE` (`username`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COLLATE = UTF8MB4_0900_AI_CI

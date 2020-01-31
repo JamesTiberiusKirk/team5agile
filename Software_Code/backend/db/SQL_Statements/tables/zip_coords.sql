@@ -1,0 +1,7 @@
+CREATE TABLE `zip_coords` (
+    `zip_Code` VARCHAR(5) NOT NULL,
+    `zip_Lat` DECIMAL(15 , 10 ) NOT NULL,
+    `zip_Long` DECIMAL(15 , 10 ) NOT NULL,
+    PRIMARY KEY (`zip_Code`),
+    UNIQUE KEY `ZIP_Code_UNIQUE` (`zip_Code`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COLLATE = UTF8MB4_0900_AI_CI
