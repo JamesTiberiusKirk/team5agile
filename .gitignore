@@ -1,4 +1,5 @@
 Software_Code/backend/node_modules
+Software_Code/zip2coords/node_modules
 Software_Code/docker-volumes
 Software_Code/backend/config/db.config.js
 
