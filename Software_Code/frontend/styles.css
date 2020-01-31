@@ -173,8 +173,8 @@
     z-index: 1;
     width: 50%;
     left: 50%;
-    margin-left: -49.2%;
-    top: 135px;
+    margin-left: 5%;
+    top: 15px;
   }
 
   .mapboxgl-ctrl-geocoder {
@@ -1104,7 +1104,7 @@
 }
 
 .sticky {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
 }
