@@ -41,7 +41,7 @@
             <a class="nav-link text-primary" href="about.html">About</a>
           </li>
         </ul>
-        <a class="btn navbar-btn mx-2 btn-outline-success" href="#">Start search</a><a class="btn navbar-btn mx-2 btn-outline-primary" href="login.html">Log in</a>
+        <a class="btn navbar-btn mx-2 btn-outline-success" href="#map">Start search</a><a class="btn navbar-btn mx-2 btn-outline-primary" href="login.html">Log in</a>
       </div>
     </div>
   </nav>
@@ -52,197 +52,53 @@
       <div class="row mt-5" style="">
         <div class="col-10 bg-white p-5 mx-auto mx-md-0 col-lg-6 col-md-12 mt-4" style="">
           <h1>Compare treatment prices</h1>
-          <p class="mb-3">Wherever you are</p><a class="btn btn-lg shadowed btn-success text-center align-items-center mt-4" href="#register" style="">Start search</a><i class="d-block fa fa-angle-down text-center fa-3x pt-3"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="pt-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center">Find the right option for you.&nbsp;<small class="text-muted">Search by treatment or ID, and your location.</small></h2>
+          <p class="mb-3">Wherever you are</p><a class="btn btn-lg shadowed btn-success text-center align-items-center mt-4" href="#map" style="">Start search</a><i class="d-block fa fa-angle-down text-center fa-3x pt-3"></i>
         </div>
       </div>
     </div>
   </div>
     
-  <!-- Search form -->
-  <div class="py-4" style="">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <form id="c_form-h" class="" style="">
-            <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
-              <div class="col-10">
-                <div class="form-group row">
-                  <div class="col-10"><input type="text" class="form-control" id="inputnameid" placeholder="Treatment name / Treatment ID"></div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row"><label for="inputpasswordh" class="col-2 col-form-label" contenteditable="true">Street Address</label>
-              <div class="col-10">
-                <div class="form-group row">
-                  <div class="col-10"><input type="text" class="form-control" id="inputstreet"></div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">Zip Code</label>
-              <div class="col-10">
-                <div class="form-group row">
-                  <div class="col-10"><input type="text" class="form-control" id="inputzipcode"></div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">City</label>
-              <div class="col-10">
-                <div class="form-group row">
-                  <div class="col-10"><input type="text" class="form-control" id="inputcity"></div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">State</label>
-              <div class="col-10">
-                <div class="form-group row">
-                  <div class="col-10">
-                    <select>
-                      <option value="select-state">Select state</option>
-                      <option value="AL">AL</option>
-                      <option value="AK">AK</option>
-                      <option value="AR">AR</option>
-                      <option value="AZ">AZ</option>
-                      <option value="CA">CA</option>
-                      <option value="CO">CO</option>
-                      <option value="CT">CT</option>
-                      <option value="DC">DC</option>
-                      <option value="DE">DE</option>
-                      <option value="FL">FL</option>
-                      <option value="GA">GA</option>
-                      <option value="HI">HI</option>
-                      <option value="IA">IA</option>
-                      <option value="ID">ID</option>
-                      <option value="IL">IL</option>
-                      <option value="IN">IN</option>
-                      <option value="KS">KS</option>
-                      <option value="KY">KY</option>
-                      <option value="LA">LA</option>
-                      <option value="MA">MA</option>
-                      <option value="MD">MD</option>
-                      <option value="ME">ME</option>
-                      <option value="MI">MI</option>
-                      <option value="MN">MN</option>
-                      <option value="MO">MO</option>
-                      <option value="MS">MS</option>
-                      <option value="MT">MT</option>
-                      <option value="NC">NC</option>
-                      <option value="NE">NE</option>
-                      <option value="NH">NH</option>
-                      <option value="NJ">NJ</option>
-                      <option value="NM">NM</option>
-                      <option value="NV">NV</option>
-                      <option value="NY">NY</option>
-                      <option value="ND">ND</option>
-                      <option value="OH">OH</option>
-                      <option value="OK">OK</option>
-                      <option value="OR">OR</option>
-                      <option value="PA">PA</option>
-                      <option value="RI">RI</option>
-                      <option value="SC">SC</option>
-                      <option value="SD">SD</option>
-                      <option value="TN">TN</option>
-                      <option value="TX">TX</option>
-                      <option value="UT">UT</option>
-                      <option value="VT">VT</option>
-                      <option value="VA">VA</option>
-                      <option value="WA">WA</option>
-                      <option value="WI">WI</option>
-                      <option value="WV">WV</option>
-                      <option value="WY">WY</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="btn navbar-btn btn-outline-success pl-4 pr-4" href="#register">Submit</a>
-            <a class="btn navbar-btn mx-2 btn-outline-primary" href="#register" id="location-button">Use current location</a>
-          </form>
-          <script style="">
-            $('#location-button').click(function() {
-              if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                  console.log(position)
-                });
-              } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-              }
-            });
-          </script>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="">Select the best option from the list below.</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6" style="">
-          <div class="btn-group" style="">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sory by</button>
-            <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
-            </div>
-          </div>
-          <div class="btn-group" style="">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
-            <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
-            </div>
-          </div>
+  <!-- Paragraph section --> 
+    <a id="text">
+      <div class="pt-4">
+        <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <ul class="pagination">
-                <li class="page-item"> <a class="page-link" href="#"> <span>«</span></a> </li>
-                <li class="page-item active"> <a class="page-link" href="#213B63">1</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">4</a> </li>
-                <li class="page-item"> <a class="page-link" href="#"> <span>»</span></a> </li>
-              </ul>
+              <div class="py-5 text-center" >
+                <div class="container">
+                  <div class="row">
+                    <div class="mx-auto col-md-8"> <i class="fa fa-4x mx-3 d-inline text-muted fa-search"></i>
+                      <h2 class="text-center mt-5 mb-5">Find the right option for you.<br>
+                          <small class="text-muted">Search by treatment and your location.</small></h2>
+                      <p class="mt-3 lead">Make an informed decision based on thousands of records&nbsp;<br>and choose the best option close to where you are.</p>
+                    </div>
+                  </div>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </a>
     
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-            <iframe src="indexmap.html" width="100%" class="myIframe">
-              <p>Your browser does not support iframes.</p>
-            </iframe>
-            <script type="text/javascript" language="javascript"> 
-                $('.myIframe').css('height', ($(window).height())*0.80+'px');
-            </script>
+  <!-- iframe map section -->
+    <a id="map">
+      <div class="py-5">
+        <div class="container">
+          <div class="row mt-4 mb-4">
+            <div class="col-md-12">
+                <iframe src="indexmap.html" width="100%" class="myIframe">
+                  <p>Your browser does not support iframes.</p>
+                </iframe>
+                <script type="text/javascript" language="javascript"> 
+                    $('.myIframe').css('height', ($(window).height())*0.80+'px');
+                </script>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </a>
+
 
   <!-- Footer -->
   <div class="py-3">
