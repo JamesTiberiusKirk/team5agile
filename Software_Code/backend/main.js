@@ -5,9 +5,7 @@ const { Db } = require('./db/db');
 
 const app = express();
 
-
 db = new Db();
-
 
 // Helper functions
 function log(req, res) {
@@ -20,9 +18,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id');
   res.header('Access-Control-Expose-Headers', 'x-access-token, x-refresh-token');
-
   log(req, res);
-
   next();
 });
 app.use(bodyParser.json());
@@ -33,13 +29,12 @@ app.get('/zip2coords', (req, res) => {
   let zip = req.query.zip;
   if (zip) {
     let sql = `SELECT * FROM healthcare.zip_coords WHERE zip_Code=${zip}`;
-    db.conn.query(sql, (result,err)=>{
-      if (err){
+    db.conn.query(sql, (err, result) => {
+      if (err) {
         res.status(500).send(err);
-        return console.log(`[GET] /providers error: ${err}`); 
+        return console.log(`[GET] /zip2coords error: ${err}`);
       }
-
-      res.sendStatus(200).send(result);
+      res.status(200).send(result);
     });
   } else {
     res.status(400).send('Please provide a zip code'); 
@@ -77,50 +72,6 @@ app.get('/procedures', (req, res) => {
     res.status(405).send('Need to provide a seach query');
   }
 });
-
-app.post('/provider/add', (req, res) => {
-  let newPrv;
-  let sql;
-  try {
-    let bodyData = req.body;
-
-    newPrv = {
-      provider_ID: bodyData.provider_ID,
-      provider_Name: bodyData.provider_Name,
-      provider_StreetAdd: bodyData.provider_StreetAdd,
-      provider_City: bodyData.provider_City,
-      provider_State: bodyData.provider_State,
-      provider_Zip: bodyData.provider_Zip,
-      provider_referral: bodyData.provider_referral
-    };
-
-    /*
-        sql = `INSERT INTO 'provider' ('provider_ID','provider_Name', 
-                'provider_StreetAdd', 'provider_City', 'provider_State', 
-                'provider_ Zip', 'provider_referral') 
-              VALUES ( ${newPrv.provider_ID}, 
-                ${newPrv.provider_Name}, 
-                ${newPrv.provider_StreetAdd}, 
-                ${newPrv.provider_City}, 
-                ${newPrv.provider_State} 
-                ${newPrv.provider_Zip}, 
-                ${newPrv.provider_referral});`
-    
-        db.conn.query(sql, (err, result) => {
-          if (err) return console.log(err);
-          console.log(result);
-        });
-        */
-  } catch (e) {
-    console.log(`[POST] ${req.url} error: ${e}`);
-    return res.status(500).send(e.message);
-  }
-
-  res.status(201).send('added')
-  console.log(`[POST] ${req.url} 201 ${JSON.stringify(newPrv)}`);
-
-});
-
 
 var server = app.listen(3000, () => {
   var port = server.address().port;
