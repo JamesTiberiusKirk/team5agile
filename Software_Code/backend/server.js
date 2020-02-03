@@ -8,7 +8,6 @@ function log(req, res) {
 
 class Server {
   constructor(db) {
-    console.log(db)
     this.db = db;
     this.app = express();
     this.initMiddleware();
