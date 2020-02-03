@@ -4,7 +4,8 @@
   "description": "Agile project from team 5 for rating healfcares services in USA",
   "main": "main.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive --exit ./tests/api.test.js"
+    "test": "./node_modules/.bin/mocha --recursive --exit",
+    "mon": "./node_modules/.bin/nodemon main.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/JamesTiberiusKirk/team5agile#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai-arrays": "^2.0.0",
     "express": "^4.17.1",
     "mysql": "^2.18.1"
   },
