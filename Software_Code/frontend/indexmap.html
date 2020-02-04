@@ -23,136 +23,8 @@
 
   </head>
   <body> 
-   <div class='sidebar'>
-    <!-- The overlay -->
-    <div id="myNav" class="overlay">
 
-      <!-- Overlay content -->
-      <div class="overlay-content">
-        <div class='heading'>
-          <h1> 
-              <!-- Button to close the overlay navigation -->
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr; Edit Search</a>
-          </h1>
-        </div>
-        <div id='listings' class='listings'></div>
-      </div>
-
-    </div>
-  
-       
-       <div class="py-4" style="">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <form id="c_form-h" class="" style="">
-                <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10"><input type="text" class="form-control" id="inputnameid" placeholder="Treatment name / Treatment ID"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row"><label for="inputpasswordh" class="col-2 col-form-label" contenteditable="true">Street Address</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10"><input type="text" class="form-control" id="inputstreet"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">Zip Code</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10"><input type="text" class="form-control" id="inputzipcode"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">City</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10"><input type="text" class="form-control" id="inputcity"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">State</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10">
-                        <select>
-                          <option value="select-state">Select state</option>
-                          <option value="AL">AL</option>
-                          <option value="AK">AK</option>
-                          <option value="AR">AR</option>
-                          <option value="AZ">AZ</option>
-                          <option value="CA">CA</option>
-                          <option value="CO">CO</option>
-                          <option value="CT">CT</option>
-                          <option value="DC">DC</option>
-                          <option value="DE">DE</option>
-                          <option value="FL">FL</option>
-                          <option value="GA">GA</option>
-                          <option value="HI">HI</option>
-                          <option value="IA">IA</option>
-                          <option value="ID">ID</option>
-                          <option value="IL">IL</option>
-                          <option value="IN">IN</option>
-                          <option value="KS">KS</option>
-                          <option value="KY">KY</option>
-                          <option value="LA">LA</option>
-                          <option value="MA">MA</option>
-                          <option value="MD">MD</option>
-                          <option value="ME">ME</option>
-                          <option value="MI">MI</option>
-                          <option value="MN">MN</option>
-                          <option value="MO">MO</option>
-                          <option value="MS">MS</option>
-                          <option value="MT">MT</option>
-                          <option value="NC">NC</option>
-                          <option value="NE">NE</option>
-                          <option value="NH">NH</option>
-                          <option value="NJ">NJ</option>
-                          <option value="NM">NM</option>
-                          <option value="NV">NV</option>
-                          <option value="NY">NY</option>
-                          <option value="ND">ND</option>
-                          <option value="OH">OH</option>
-                          <option value="OK">OK</option>
-                          <option value="OR">OR</option>
-                          <option value="PA">PA</option>
-                          <option value="RI">RI</option>
-                          <option value="SC">SC</option>
-                          <option value="SD">SD</option>
-                          <option value="TN">TN</option>
-                          <option value="TX">TX</option>
-                          <option value="UT">UT</option>
-                          <option value="VT">VT</option>
-                          <option value="VA">VA</option>
-                          <option value="WA">WA</option>
-                          <option value="WI">WI</option>
-                          <option value="WV">WV</option>
-                          <option value="WY">WY</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Use any element to open/show the overlay navigation menu -->
-                <span onclick="openNav()"><button class="submit-button" onclick="getProviders()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
-              </form>
-
-
-              Search for Provider: <input type="text" id="place" value="">
-              <button onclick="getProviders()">Submit</button>
-          
-                div id="container"></div>
-                <script>
-function openNav() {
-  document.getElementById("myNav").style.width = "33.3333%";
-}
-
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}
+    <script>
       // This will let you use the .remove() function later on
       if (!('remove' in Element.prototype)) {
         Element.prototype.remove = function() {
@@ -418,13 +290,416 @@ geolocate.on('geolocate', function(e) {
   }
 
                 </script>
-            
-            <div>
+
+   <div class='sidebar'>
+
+    <script>function openNav() {
+      document.getElementById("myNav").style.width = "33.3333%";
+    }
+    
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }</script>
+
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <div class='heading'>
+          <h1> 
+              <!-- Button to close the overlay navigation -->
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr; Edit Search</a>
+          </h1>
+        </div>
+        <div id='listings' class='listings'></div>
+      </div>
+
+    </div>
+  
+       
+       <div class="py-4" style="">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <form id="c_form-h" class="" style="">
+                <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
+                  <div class="col-10">
+                    <div class="form-group row">
+                      <div class="col-10"><input type="text" class="form-control" id="inputnameid" placeholder="Treatment name / Treatment ID"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row"><label for="inputpasswordh" class="col-2 col-form-label" contenteditable="true">Street Address</label>
+                  <div class="col-10">
+                    <div class="form-group row">
+                      <div class="col-10"><input type="text" class="form-control" id="inputstreet"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">Zip Code</label>
+                  <div class="col-10">
+                    <div class="form-group row">
+                      <div class="col-10"><input type="text" class="form-control" id="inputzipcode"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">City</label>
+                  <div class="col-10">
+                    <div class="form-group row">
+                      <div class="col-10"><input type="text" class="form-control" id="inputcity"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row"><label for="inputmailh" class="col-2 col-form-label">State</label>
+                  <div class="col-10">
+                    <div class="form-group row">
+                      <div class="col-10">
+                        <select>
+                          <option value="select-state">Select state</option>
+                          <option value="AL">AL</option>
+                          <option value="AK">AK</option>
+                          <option value="AR">AR</option>
+                          <option value="AZ">AZ</option>
+                          <option value="CA">CA</option>
+                          <option value="CO">CO</option>
+                          <option value="CT">CT</option>
+                          <option value="DC">DC</option>
+                          <option value="DE">DE</option>
+                          <option value="FL">FL</option>
+                          <option value="GA">GA</option>
+                          <option value="HI">HI</option>
+                          <option value="IA">IA</option>
+                          <option value="ID">ID</option>
+                          <option value="IL">IL</option>
+                          <option value="IN">IN</option>
+                          <option value="KS">KS</option>
+                          <option value="KY">KY</option>
+                          <option value="LA">LA</option>
+                          <option value="MA">MA</option>
+                          <option value="MD">MD</option>
+                          <option value="ME">ME</option>
+                          <option value="MI">MI</option>
+                          <option value="MN">MN</option>
+                          <option value="MO">MO</option>
+                          <option value="MS">MS</option>
+                          <option value="MT">MT</option>
+                          <option value="NC">NC</option>
+                          <option value="NE">NE</option>
+                          <option value="NH">NH</option>
+                          <option value="NJ">NJ</option>
+                          <option value="NM">NM</option>
+                          <option value="NV">NV</option>
+                          <option value="NY">NY</option>
+                          <option value="ND">ND</option>
+                          <option value="OH">OH</option>
+                          <option value="OK">OK</option>
+                          <option value="OR">OR</option>
+                          <option value="PA">PA</option>
+                          <option value="RI">RI</option>
+                          <option value="SC">SC</option>
+                          <option value="SD">SD</option>
+                          <option value="TN">TN</option>
+                          <option value="TX">TX</option>
+                          <option value="UT">UT</option>
+                          <option value="VT">VT</option>
+                          <option value="VA">VA</option>
+                          <option value="WA">WA</option>
+                          <option value="WI">WI</option>
+                          <option value="WV">WV</option>
+                          <option value="WY">WY</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Use any element to open/show the overlay navigation menu -->
+                <span onclick="openNav()"><button class="submit-button" onclick="getProviders()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
+              </form>
+
+            </div>
           </div>
         </div>
-      </div> 
+      </div>
+
+
+              Search for Provider: <input type="text" id="place" value="">
+              <button onclick="getProviders()">Submit</button>
+          
+                <div id="container"></div>
+
+            
+   </div>
+    <div id='map' class='map'>
+      <script>
+        // This will let you use the .remove() function later on
+        if (!('remove' in Element.prototype)) {
+          Element.prototype.remove = function() {
+            if (this.parentNode) {
+                this.parentNode.removeChild(this);
+            }
+          };
+        }
+  
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZG9taXgiLCJhIjoiY2s1eHZrbmVpMTFxdTNucG9laHRzdXpwdyJ9.rjo6pGqpcVW62CC6eSscBw';
+        /** 
+         * Add the map to the page
+        */
+        var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/light-v10',
+          center: [-98.5795, 39.8283],
+          zoom: 4,
+          scrollZoom: false
+        });
+  
+  // Add geolocate control to the map.
+      /*  map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+          })
+        );*/
+  
+    /*  function findLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              console.log(position)
+            });
+          }
+      }
+  
+      navigator.geolocation.addEventListener('geolocate', findLocation);*/
+  
+  // Track user location (sends multiple requests)
+  // var geolocate = new mapboxgl.GeolocateControl({trackUserLocation: true});
+  
+  var geolocate = new mapboxgl.GeolocateControl();
+  
+  map.addControl(geolocate);
+  
+  // Add full screen control to map
+  map.addControl(new mapboxgl.FullscreenControl());
+  
+  // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+  
+  //Geocoder Search Bar
+  var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+    });
+  
+  document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+  
+  geolocate.on('geolocate', function(e) {
+        var lon = e.coords.longitude;
+        var lat = e.coords.latitude
+        var position = [lon, lat];
+        console.log(position);
+  });
+  
+    
+    /**
+     * Assign a unique id to each provider. You'll use this `id`
+     * later to associate each point on the map with a listing
+     * in the sidebar.
+    */
+    /*provider.features.forEach(function(provider, i){
+      provider.properties.id = i;
+    });*/
+  
+    /**
+     * Wait until the map loads to make changes to the map.
+    */
+    map.on('load', function (e) {
+      /** 
+       * This is where your '.addLayer()' used to be, instead
+       * add only the source without styling a layer
+      */
+      map.addSource("provider", {
+        "type": "geojson",
+        "data": provider
+      });
+  
+      /**
+       * Add all the things to the page:
+       * - The location listings on the side of the page
+       * - The markers onto the map
+      */
+      buildLocationList(provider);
+      addMarkers();
+    });
+  
+    /**
+     * Add a marker to the map for every provider listing.
+    **/
+    function addMarkers() {
+      /* For each feature in the GeoJSON object above: */
+      provider.features.forEach(function(marker) {
+        /* Create a div element for the marker. */
+        var el = document.createElement('div');
+        /* Assign a unique `id` to the marker. */
+        el.id = "marker-" + marker.properties.id;
+        /* Assign the `marker` class to each marker for styling. */
+        el.className = 'marker';
+        
+        /**
+         * Create a marker using the div element
+         * defined above and add it to the map.
+        **/
+        new mapboxgl.Marker(el, { offset: [0, -23] })
+          .setLngLat(marker.geometry.coordinates)
+          .addTo(map);
+  
+        /**
+         * Listen to the element and when it is clicked, do three things:
+         * 1. Fly to the point
+         * 2. Close all other popups and display popup for clicked provider
+         * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+        **/
+        el.addEventListener('click', function(e){
+          /* Fly to the point */
+          flyToProvider(marker);
+          /* Close all other popups and display popup for clicked provider */
+          createPopUp(marker);
+          /* Highlight listing in sidebar */
+          var activeItem = document.getElementsByClassName('active');
+          e.stopPropagation();
+          if (activeItem[0]) {
+            activeItem[0].classList.remove('active');
+          }
+          var listing = document.getElementById('listing-' + marker.properties.id);
+          listing.classList.add('active');
+        });
+      });
+    }
+  
+    /**
+     * Add a listing for each provider to the sidebar.
+    **/
+    function buildLocationList(data) {
+      var x = document.getElementById("listings");
+        if (x.style.display === "none") {
+         x.style.display = "block";
+        }
+      data.features.forEach(function(provider, i){
+        /**
+         * Create a shortcut for `provider.properties`,
+         * which will be used several times below.
+        **/
+        var prop = provider.properties;
+  
+  
+        var listings = document.getElementById('listings');
+        var child_div = document.createElement('div');
+        /*var pro_name = prov.procedure_Def;
+        var prov_name = prov.provider_Name;
+        var pro_price = prov.avg_Medicare_Payments;
+        child_div.innerHTML = `<p>${prov_name}: ${pro_name}: $${pro_price} </p>`;*/
+        var listing = listings.appendChild(child_div)
+  
+        /* Add a new listing section to the sidebar. */
+        //var listings = document.getElementById('listings');
+        //var listing = listings.appendChild(document.createElement('div'));
+        /* Assign a unique `id` to the listing. */
+        listing.id = "listing-" + prop.id;
+        /* Assign the `item` class to each listing for styling. */
+        listing.className = 'item';
+  
+        /* Add the link to the individual listing created above. */
+        var link = listing.appendChild(document.createElement('a'));
+        link.href = '#';
+        link.className = 'title';
+        link.id = "link-" + prop.id;
+        link.innerHTML = prov.procedure_Def + " " + prov.avg_Total_Payments;
+  
+  
+        /* Add details to the individual listing. */
+        var details = listing.appendChild(document.createElement('div'));
+        details.innerHTML = prov.provider_Name;
+        //if (prop.provider_StreetAdd) {
+          details.innerHTML += ' · ' + prov.provider_City;
+        //}
+  
+        /**
+         * Listen to the element and when it is clicked, do four things:
+         * 1. Update the `currentFeature` to the provider associated with the clicked link
+         * 2. Fly to the point
+         * 3. Close all other popups and display popup for clicked provider
+         * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+        **/
+        link.addEventListener('click', function(e){
+          for (var i=0; i < data.features.length; i++) {
+            if (this.id === "link-" + data.features[i].properties.id) {
+              var clickedListing = data.features[i];
+              flyToProvider(clickedListing);
+              createPopUp(clickedListing);
+            }
+          }
+          var activeItem = document.getElementsByClassName('active');
+          if (activeItem[0]) {
+            activeItem[0].classList.remove('active');
+          }
+          this.parentNode.classList.add('active');
+        });
+      });
+    }
+  
+    // Could be copied unchanged
+    function getProcedures() {
+      //addFeature({});
+      var url = `https://api.team5agile.dumitruvulpe.com`;
+      var uri = `/procedures/?search_query=`;
+      var placename = document.getElementById("place").value;
+  
+      fetch(url+uri+placename)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data[0])
+          data[0].forEach(e => {
+            //insert(e)
+            buildLocationList(e);
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+  
+    }
+  
+    /**
+     * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+     * a given center point.
+    **/
+    function flyToProvider(currentFeature) {
+      map.flyTo({
+        center: currentFeature.geometry.coordinates,
+        zoom: 15
+      });
+    }
+  
+    /**
+     * Create a Mapbox GL JS `Popup`.
+    **/
+    function createPopUp(currentFeature) {
+      var popUps = document.getElementsByClassName('mapboxgl-popup');
+      if (popUps[0]) popUps[0].remove();
+      var popup = new mapboxgl.Popup({closeOnClick: false})
+        .setLngLat(currentFeature.geometry.coordinates)
+        .setHTML('<h3>Sweetgreen</h3>' +
+          '<h4>' + currentFeature.properties.provider_City + '</h4>')
+        .addTo(map);
+    }
+  
+                  </script>
+
+
     </div>
-    <div id='map' class='map'></div>
     <div id="geocoder" class="geocoder"></div>
     <!--<script src="mapscript.js"></script>-->
     
