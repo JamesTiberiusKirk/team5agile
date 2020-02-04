@@ -121,6 +121,7 @@ Backend completed work on search querys for provider and procedure
 Coded route for provider location, i.e. longitude and latitude
 Started calculation for distance between locations
 
+---
 ## 30/01/20 Day [9] - Scrum Meeting Summary  
 - The Scrum Master for this meeting was **Patrick**
 - At 11:30 am
@@ -135,10 +136,11 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Checking over documentation is in a good and clear format
-Continue calculation for distance between locations and have it completed by tomorrrow
-Checking map works with new feature
+Checking over documentation is in a good and clear format  
+Continue calculation for distance between locations and have it completed by tomorrrow  
+Checking map works with new feature  
 
+---
 ## 31/01/20 Day [10] - Scrum Meeting Summary  
 - The Scrum Master for this meeting was **Patrick**
 - At 11:30 am
@@ -153,5 +155,22 @@ N/A
 N/A
 
 ### Summary of Conversation:
-Had sprint review with company
-Changed sprint 2 to match the comments from the sprint review
+Had sprint review with company  
+Changed sprint 2 to match the comments from the sprint review  
+
+---
+## 03/02/20 Day [13] - Scrum Meeting Summary  
+- The Scrum Master for this meeting was **John**
+- At 11:30 am
+
+### Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
+
+### Members Not Present:
+N/A
+
+### Apologies:
+N/A
+
+### Summary of Conversation:
+Went over our feedback we recieved about the previous sprint  
