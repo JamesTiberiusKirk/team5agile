@@ -22,4 +22,5 @@ function toRad(Value)
 
 module.exports = calcCrow;
 
-console.log(calcCrow(59.3293371,13.4877472,59.3225525,13.4619422).toFixed(2))
+//Sourced from:
+//https://stackoverflow.com/questions/18883601/function-to-calculate-distance-between-two-coordinates
