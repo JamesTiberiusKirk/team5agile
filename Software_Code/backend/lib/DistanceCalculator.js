@@ -1,26 +1,25 @@
-// Convert num is rad
-if(typeof(Number.coord.toRad) === "undefined") {
-    Number.coord.toRad = function () {
-        return this * Math.PI / 180;
-    }
+//This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
+function calcCrow(lat1, lon1, lat2, lon2) 
+{
+  var R = 6371; // km
+  var dLat = toRad(lat2-lat1);
+  var dLon = toRad(lon2-lon1);
+  var lat1 = toRad(lat1);
+  var lat2 = toRad(lat2);
+
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c;
+  return d;
 }
 
-exports.getDistance = function(start, end, decimals) {
-    decimals = decimals || 2;
-    var earthRadius = 6371; // km
-    lat1 = parseFloat(start.latitude);              //User latitude
-    lat2 = parseFloat(end.latitude);                //Location longitude
-    lon1 = parseFloat(start.longitude);             //User longitude
-    lon2 = parseFloat(end.longitude);               //Location longitude
+// Converts numeric degrees to radians
+function toRad(Value) 
+{
+    return Value * Math.PI / 180;
+}
 
-    var dLat = (lat2 - lat1).toRad();
-    var dLon = (lon2 - lon1).toRad();
-    var lat1 = lat1.toRad();
-    var lat2 = lat2.toRad();
+module.exports = calcCrow;
 
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = earthRadius * c;
-    return Math.round(d * Math.pow(10, decimals)) / Math.pow(10, decimals);
-};
+console.log(calcCrow(59.3293371,13.4877472,59.3225525,13.4619422).toFixed(2))
