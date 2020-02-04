@@ -75,7 +75,7 @@ geolocate.on('geolocate', function(e) {
 });
 
 
-  /*var provider = {
+  var provider = {
     "type": "FeatureCollection",
     "features": [
       {
@@ -306,9 +306,9 @@ geolocate.on('geolocate', function(e) {
         }
       }
     ]
-  };*/
+  };
       
-  /*function addFeature(f){
+  function addFeature(f){
     var newFeature = {
         "type": "Feature",
         "geometry": {
@@ -334,16 +334,16 @@ geolocate.on('geolocate', function(e) {
     }
     // provider['features'].push(newFeature);
     console.log(provider)
-  }*/
+  }
   
   /**
    * Assign a unique id to each provider. You'll use this `id`
    * later to associate each point on the map with a listing
    * in the sidebar.
   */
-  /*provider.features.forEach(function(provider, i){
+  provider.features.forEach(function(provider, i){
     provider.properties.id = i;
-  });*/
+  });
 
   /**
    * Wait until the map loads to make changes to the map.
@@ -426,18 +426,9 @@ geolocate.on('geolocate', function(e) {
       **/
       var prop = provider.properties;
 
-
-      var listings = document.getElementById('listings');
-      var child_div = document.createElement('div');
-      /*var pro_name = prov.procedure_Def;
-      var prov_name = prov.provider_Name;
-      var pro_price = prov.avg_Medicare_Payments;
-      child_div.innerHTML = `<p>${prov_name}: ${pro_name}: $${pro_price} </p>`;*/
-      var listing = listings.appendChild(child_div)
-
       /* Add a new listing section to the sidebar. */
-      //var listings = document.getElementById('listings');
-      //var listing = listings.appendChild(document.createElement('div'));
+      var listings = document.getElementById('listings');
+      var listing = listings.appendChild(document.createElement('div'));
       /* Assign a unique `id` to the listing. */
       listing.id = "listing-" + prop.id;
       /* Assign the `item` class to each listing for styling. */
@@ -448,15 +439,14 @@ geolocate.on('geolocate', function(e) {
       link.href = '#';
       link.className = 'title';
       link.id = "link-" + prop.id;
-      link.innerHTML = prov.procedure_Def + " " + prov.avg_Total_Payments;
-
+      link.innerHTML = prop.provider_City;
 
       /* Add details to the individual listing. */
       var details = listing.appendChild(document.createElement('div'));
-      details.innerHTML = prov.provider_Name;
-      //if (prop.provider_StreetAdd) {
-        details.innerHTML += ' · ' + prov.provider_City;
-      //}
+      details.innerHTML = prop.avg_Total_Payments;
+      if (prop.provider_StreetAdd) {
+        details.innerHTML += ' · ' + prop.provider_Name;
+      }
 
       /**
        * Listen to the element and when it is clicked, do four things:
@@ -480,30 +470,6 @@ geolocate.on('geolocate', function(e) {
         this.parentNode.classList.add('active');
       });
     });
-  }
-
-  // Could be copied unchanged
-  function getProcedures() {
-    //addFeature({});
-    var url = `https://api.team5agile.dumitruvulpe.com`;
-    var uri = `/procedures/?search_query=`;
-    var placename = document.getElementById("place").value;
-
-    fetch(url+uri+placename)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data[0])
-        data[0].forEach(e => {
-          //insert(e)
-          buildLocationList(e);
-        });
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-
   }
 
   /**
