@@ -40,6 +40,18 @@ describe('Tests the API', () => {
       })
   });
 
+// 33.841338134379676
+
+  it('GET DistanceCalculator', (done) => {
+    request(this.app)
+      .get('/DisCal?lat1=34.196159&long1=-86.196898&lat2=34.557662&long2=-85.79649')
+      .expect(200)
+      .then((res) => {
+        let body = res.body;
+        expect(body).to.be.equal()
+      }
+  }
+
 });
 
 
