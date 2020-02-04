@@ -93,7 +93,8 @@
 
             <div id="container"></div>
             <script>
-
+                
+                    
                 function insert(prov) {
 
                   var div = document.getElementById('container');
@@ -105,13 +106,13 @@
                   div.appendChild(child_div)
 
                 }
-                function getProcedures() {
-                  //addFeature({});
-                  var url = `https://api.team5agile.dumitruvulpe.com`;
-                  var uri = `/procedures/?search_query=`;
-                  var placename = document.getElementById("place").value;
 
-                  fetch(url+uri+placename)
+                function getProcedures() {
+                  var url = `https://api.team5agile.dumitruvulpe.com`;
+                  var pro_uri = `/procedures/?search_query=`;
+                  var procedureName = document.getElementById("place").value;
+
+                  fetch(url+pro_uri+procedureName)
                     .then((res) => {
                       return res.json();
                     })
@@ -119,13 +120,65 @@
                       console.log(data[0])
                       data[0].forEach(e => {
                         insert(e)
+                        searchForProviderZip(e.provider_Zip)
+                        .then((res)=>{
+                          //do smth with res
+                        }).catch((err)=>{
+                          //deal with err
+                        });
                       });
                     })
                     .catch((error) => {
                       console.log(error)
                     });
 
+                  //searchForProviderName();
+                  //searchForProviderZip();
+                  // createGeoJSON();
+
                 }
+
+  function searchForProviderZip(zip_code) {
+    return new Promise((reject, resolve) => {
+      var url = `https://api.team5agile.dumitruvulpe.com`;
+      var zip_uri = '/zip2coords?zip=';
+      //console.log(zip_code)
+      fetch(url + zip_uri + zip_code)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          // console.log('here')
+          console.log(data[0])
+          // console.log(typeof(data[0]))
+          // data[0].forEach(e => {
+          //   insert(e)
+          // });
+          resolve(data);
+        })
+        .catch((error) => {
+          // console.log(error)
+          reject(error)
+        });
+    });
+
+
+              }
+
+            //   const createGeoJSON = () => {
+            //     const data = [
+            //         {
+            //             lat: document.getElementById("zip_Lat").value,
+            //             lng: document.getElementById("zip_Long").value
+            //         }
+            //     ];
+            //     data[0][document.getElementById("provider_Name").value] = document.getElementById("propertyvalue1").value;
+            //     data[0][document.getElementById("propertyname2").value] = document.getElementById("propertyvalue2").value;
+            //     const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
+            //     document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
+            //   }
+            
+            
             </script>
         </div>
       </div>
@@ -141,7 +194,7 @@
         <div class="container">
           <div class="row mt-4 mb-4">
             <div class="col-md-12">
-                <iframe src="indexmap.html" width="100%" class="myIframe">
+                <iframe src="indexmap.html" scrollable = "no" width="100%" class="myIframe">
                   <p>Your browser does not support iframes.</p>
                 </iframe>
                 <script type="text/javascript" language="javascript"> 
