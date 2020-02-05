@@ -40,7 +40,7 @@ describe('Tests the API', () => {
       })
   });
 
-  it('GET /procedures pased on price filtering', (done) => {
+  it('GET /procedures based on price filtering', (done) => {
     request(this.app)
       .get(`/procedures?search_query=293&price_min=1000&price_max=4000`)
       .expect(200)
