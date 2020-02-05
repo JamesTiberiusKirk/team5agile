@@ -22,7 +22,7 @@ describe('Tests the API', () => {
   });
 
   after((done) => {
-    this.db.closeConn().then(()=>{
+    this.db.closeConn().then(() => {
       done()
     });
   });
@@ -35,21 +35,34 @@ describe('Tests the API', () => {
         let body = res.body;
         expect(body).to.be.array();
         done();
-      }).catch((err)=>{
+      }).catch((err) => {
         done(err);
       })
   });
 
-// 33.841338134379676
-  it('GET /procedures based on location', (done)=>{
+  it('GET /procedures pased on price filtering', (done) => {
     request(this.app)
-      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .get(`/procedures?search_query=293&price_min=1000&price_max=4000`)
       .expect(200)
-      .then((res)=>{
+      .then((res) => {
         let body = res.body;
         expect(body).to.be.array();
         done();
-      }).catch((err)=>{
+      }).catch((err) => {
+        done(err);
+      });
+  });
+
+  // 33.841338134379676
+  it('GET /procedures based on location', (done) => {
+    request(this.app)
+      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .expect(200)
+      .then((res) => {
+        let body = res.body;
+        expect(body).to.be.array();
+        done();
+      }).catch((err) => {
         done(err);
       });
   });
