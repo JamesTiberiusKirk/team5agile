@@ -308,34 +308,6 @@ geolocate.on('geolocate', function(e) {
     ]
   };
       
-  function addFeature(f){
-    var newFeature = {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -77.034084142948,
-            38.909671288923
-          ]
-        },
-        "properties": {
-          "provider_Name": "TEXAS HEALTH HARRIS METHODIST HOSPITAL AZLE",
-          "provider_StreetAdd": "108 DENVER TRAIL6",
-          "provider_City": "AZLE",
-          "avg_Total_Payments": "Washington DC",
-          "avg_Medicare_Payment": "United States",
-          "procedure_ID": "at 15th St NW",
-          "procedure_Def": "20005",
-          "provider_ID": 450419,
-          "provider_State": "TX",
-          "provider_Zip": "76020",
-          "provider_referral": "TX - Fort Worth"
-        }
-    }
-    // provider['features'].push(newFeature);
-    console.log(provider)
-  }
-  
   /**
    * Assign a unique id to each provider. You'll use this `id`
    * later to associate each point on the map with a listing
