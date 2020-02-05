@@ -30,12 +30,34 @@
       <!-- Overlay content -->
       <div class="overlay-content">
         <div class='heading'>
-          <h1>Edit Search 
+          <h1>
               <!-- Button to close the overlay navigation -->
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr;</a>
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr; Edit Search </a>
           </h1>
         </div>
-        <div id='listings' class='listings'></div>
+        <div id='listings' class='listings'>
+          <div class="sort" id="sort" style="">
+            <div class="btn-group" style="">
+              <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sort by</button>
+              <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
+              </div>
+            </div>
+            <div class="btn-group" style="">
+              <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
+              <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>

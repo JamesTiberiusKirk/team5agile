@@ -1,9 +1,11 @@
 function openNav() {
   document.getElementById("myNav").style.width = "33.3333%";
+  //document.getElementById("sort").style.display = "block";
 }
 
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
+  //document.getElementById("sort").style.display = "none";
 }
       // This will let you use the .remove() function later on
       if (!('remove' in Element.prototype)) {

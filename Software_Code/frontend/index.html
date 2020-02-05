@@ -88,12 +88,61 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h5>Search for Procedure: <input type="text" id="place" value=""> <button class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures()">Submit</button></h5>
+          <h5>Search for Procedure: <input type="text" id="place" value=""> <button class="btn navbar-btn mx-2 btn-outline-success" id="show-p" onclick="getProcedures(); displaySort()">Submit</button>
+            <div class="sort" id="sort" style="display:none">
+              <div class="btn-group" style="">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sort by</button>
+                <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
+                </div>
+              </div>
+              <div class="btn-group" style="">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
+                <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
+                </div>
+              </div>
+            </div>
+         </h5>
 
+          <div id="container"></div>
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 
-            <div id="container"></div>
-            <script>
+              $(document).ready(function(){
+                $("#show-p").click(function(){
+                  $("sort").show();
+                });
+              });
+            </script>-->
 
+          <script>
+
+            function displaySort() {
+              if(document.getElementById("sort").style.display = "none") {
+                document.getElementById("sort").style.display = "inline";
+              } else {
+                document.getElementById("sort").style.display = "none";
+              }
+            }
+                /*function loadDoc() {
+                  var xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                      document.getElementById('container').innerHTML = getProcedures;
+                    }
+                  };
+                  xhttp.open("POST", "demo_post.asp", true);
+                  xhttp.send();
+                }*/
+                
+                    
                 function insert(prov) {
 
                   var div = document.getElementById('container');
@@ -114,11 +163,33 @@
                   fetch(url+uri+placename)
                     .then((res) => {
                       return res.json();
-                    })
+                    }) 
                     .then((data) => {
                       console.log(data[0])
                       data[0].forEach(e => {
                         insert(e)
+                        searchForProviderZip(e.provider_Zip)
+                        .then((res)=>{
+                          const createGeoJSON = () => {
+                            const data = [
+                                {
+                                    lat: res.lat,
+                                    lng: res.lng
+                                }
+                            ];
+                    data[0]["procedure_ID"] = e.procedure_ID;
+                    //console.log("hello");
+                    data[0]["procedure_Def"] = e.procedure_Def;
+                    data[0]["provider"] = e.provider_Name;
+                    data[0]["cost"] = e.avg_Medicare_Payments;
+                    const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
+                    document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
+                }
+                createGeoJSON();
+                        }).catch((err)=>{
+                          //deal with err
+                        });
+
                       });
                     })
                     .catch((error) => {
@@ -126,6 +197,48 @@
                     });
 
                 }
+                function searchForProviderZip(zip_code) {
+                  return new Promise((reject, resolve) => {
+                    var url = `https://api.team5agile.dumitruvulpe.com`;
+                    var zip_uri = '/zip2coords?zip=';
+                    //console.log(zip_code)
+                    fetch(url + zip_uri + zip_code)
+                      .then((res) => {
+                        return res.json();
+                      })
+                      .then((data) => {
+                        // console.log('here')
+                        console.log(data[0])
+                        // console.log(typeof(data[0]))
+                        // data[0].forEach(e => {
+                        //   insert(e)
+                        // });
+                        resolve(data);
+                      })
+                      .catch((error) => {
+                        // console.log(error)
+                        reject(error)
+                      });
+                  });
+
+
+                    }
+
+            //   const createGeoJSON = () => {
+            //     const data = [
+            //         {
+            //             lat: document.getElementById("zip_Lat").value,
+            //             lng: document.getElementById("zip_Long").value
+            //         }
+            //     ];
+            //     data[0][document.getElementById("provider_Name").value] = document.getElementById("propertyvalue1").value;
+            //     data[0][document.getElementById("propertyname2").value] = document.getElementById("propertyvalue2").value;
+            //     const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
+            //     document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
+            //   }
+            
+            
+
             </script>
         </div>
       </div>
@@ -136,12 +249,12 @@
 
     
   <!-- iframe map section -->
-    <a id="map">
+    <a id="map" scrollable="no">
       <div class="py-5">
         <div class="container">
           <div class="row mt-4 mb-4">
             <div class="col-md-12">
-                <iframe src="indexmap.html" width="100%" class="myIframe">
+                <iframe src="indexmap.html" scrollable="no" width="100%" class="myIframe">
                   <p>Your browser does not support iframes.</p>
                 </iframe>
                 <script type="text/javascript" language="javascript"> 
