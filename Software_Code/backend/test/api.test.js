@@ -41,6 +41,18 @@ describe('Tests the API', () => {
   });
 
 // 33.841338134379676
+  it('GET /procedures based on location', (done)=>{
+    request(this.app)
+      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .expect(200)
+      .then((res)=>{
+        let body = res.body;
+        expect(body).to.be.array();
+        done();
+      }).catch((err)=>{
+        done(err);
+      });
+  });
 
 });
 
