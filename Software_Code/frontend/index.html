@@ -132,8 +132,12 @@
                         searchForProviderZip(e.provider_Zip)
                         .then((res)=>{
                           //do smth with res
-                          convertGeoJSON(res)
+                          console.log('resolve')
+                        console.log(data)
+                          //convertGeoJSON()
                         }).catch((err)=>{
+                          console.log('reject')
+                          console.log(err)
                           //deal with err
                         });
                       });
@@ -154,16 +158,9 @@
                         return res.json();
                       })
                       .then((data) => {
-                        // console.log('here')
-                        console.log(data[0])
-                        // console.log(typeof(data[0]))
-                        // data[0].forEach(e => {
-                        //   insert(e)
-                        // });
                         resolve(data);
                       })
                       .catch((error) => {
-                        // console.log(error)
                         reject(error)
                       });
                   });
@@ -214,7 +211,7 @@
         <div class="container">
           <div class="row mt-4 mb-4">
             <div class="col-md-12">
-                <iframe src="indexmap.html" scrollable = "no" width="100%" class="myIframe">
+                <iframe src="indexmap.html" scrolling = "no" width="100%" class="myIframe">
                   <p>Your browser does not support iframes.</p>
                 </iframe>
                 <script type="text/javascript" language="javascript"> 
