@@ -143,9 +143,9 @@
                     searchForProviderZip(e.provider_Zip)
                       .then((res) => {
                         //do smth with res
-                        console.log('resolve')
+                        //console.log('resolve')
                         console.log(res)
-                        //convertGeoJSON()
+                        createGeoJSON(res)
                       }).catch((err) => {
                         console.log('reject')
                         console.log(err)
@@ -183,33 +183,30 @@
 
             }
 
-            function convertGeoJSON() {
-              console.log(hi)
-              //   const createGeoJSON = (res) => {
-              //     const data = [
-              //          {
-              //              lat: document.getElementById(res.zip_Lat).value,
-              //              lng: document.getElementById(res.zip_Long).value
-              //          }
-              //      ];
-              //     data[0][document.getElementById("procedure_ID").value] = document.getElementById(res.procedure_ID).value;
+            const createGeoJSON = (e) => {
+                   console.log("tester")
+                   const data = [
+                        {
+                            lat: data[0][document.getElementById(e.zip_Lat).value],
+                            lng: data[0][document.getElementById(e.zip_Long).value]
+                        }
+                    ];
+                   data[0][document.getElementById("procedure_ID").value] = document.getElementById(e.procedure_ID).value;
+                   data[0][document.getElementById("procedure_Def").value] = document.getElementById(e.procedure_Def).value;
+                   data[0][document.getElementById("provider_Name").value] = document.getElementById(e.provider_Name).value;
+                   data[0][document.getElementById("provider_StreetAdd").value] = document.getElementById(e.provider_StreetAdd).value;
+                   data[0][document.getElementById("provider_City").value] = document.getElementById(e.provider_City).value;
+                   data[0][document.getElementById("provider_State").value] = document.getElementById(e.provider_State).value;
+                   data[0][document.getElementById("provider_Zip").value] = document.getElementById(e.provider_Zip).value;
+                   data[0][document.getElementById("avg_Covered_Charges").value] = document.getElementById(e.avg_Covered_Charges).value;
+                   data[0][document.getElementById("avg_Total_Payments").value] = document.getElementById(e.avg_Total_Payments).value;
+                   data[0][document.getElementById("avg_Medicare_Payments").value] = document.getElementById(e.avg_Medicare_Payments).value;
+                   data[0][document.getElementById("provider_referral").value] = document.getElementById(e.provider_referral).value;
 
-              //     data[0][document.getElementById("procedure_Def").value] = document.getElementById(res.procedure_Def).value;
-              //     data[0][document.getElementById("provider_Name").value] = document.getElementById(res.provider_Name).value;
-              //     data[0][document.getElementById("provider_StreetAdd").value] = document.getElementById(res.provider_StreetAdd).value;
-              //     data[0][document.getElementById("provider_City").value] = document.getElementById(res.provider_City).value;
-              //     data[0][document.getElementById("provider_State").value] = document.getElementById(res.provider_State).value;
-              //     data[0][document.getElementById("provider_Zip").value] = document.getElementById(res.provider_Zip).value;
-              //     data[0][document.getElementById("avg_Covered_Charges").value] = document.getElementById(res.avg_Covered_Charges).value;
-              //     data[0][document.getElementById("avg_Total_Payments").value] = document.getElementById(res.avg_Total_Payments).value;
-              //     data[0][document.getElementById("avg_Medicare_Payments").value] = document.getElementById(res.avg_Medicare_Payments).value;
-              //     data[0][document.getElementById("provider_referral").value] = document.getElementById(res.provider_referral).value;
-
-              //     const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
-              //     document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
-              //     //console.log(dataGeoJSON)
-              // }
-            }
+                   const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
+                   document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
+                   console.log(dataGeoJSON)
+               }
           </script>
         </div>
       </div>
