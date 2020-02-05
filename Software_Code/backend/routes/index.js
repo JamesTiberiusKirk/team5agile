@@ -42,7 +42,7 @@ router.get('/providers', (req, res) => {
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
     if (queryParams) {
-        let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Covered_Charges","ASC");`
+        let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Medicare_Payments","ASC");`
         db.conn.query(sql, (err, procResult) => {
             if (err) {
                 res.status(500).send(err);
