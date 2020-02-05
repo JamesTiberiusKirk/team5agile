@@ -65,8 +65,8 @@ router.get('/procedures', (req, res) => {
                     let locArr = [];
                     procResult[0].forEach(p => {
                         // console.log((zip2CoordsRes));
-                        let coords = zip2CoordsRes.find( z => z.zip_Code == p.provider_Zip );
-                        
+                        let coords = zip2CoordsRes.find(z => z.zip_Code == p.provider_Zip);
+
                         if (!coords) return// console.log(`Nothing found for ${p.provider_Zip}`)
 
                         let dis = calcCrow(req.query.lat,
@@ -85,9 +85,16 @@ router.get('/procedures', (req, res) => {
                     res.status(200).send(locArr);
                 });
 
-
-                // if (req.query.rad && req.query.lat && req.query.lang ) {
-
+            } else if (req.query.price_min && req.query.price_max) {
+                let procArr = [];
+                let price_min = req.query.price_min;
+                let price_max = req.query.price_max;
+                procResult[0].forEach((p) => {
+                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max ){
+                        procArr.push(p);
+                    }
+                });
+                res.status(200).send(procArr);
             } else {
                 res.status(200).send(procResult[0]);
             } // else not all params provided 
