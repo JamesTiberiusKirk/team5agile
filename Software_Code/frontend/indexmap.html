@@ -20,7 +20,7 @@
     <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
   </head>
   <body> 
    <div class='sidebar'>
@@ -137,46 +137,311 @@
                   </div>
                 </div>
                 <!-- Use any element to open/show the overlay navigation menu -->
-                <span onclick="openNav()"><button class="submit-button" onclick="getProviders()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
+                <span onclick="openNav()"><button class="submit-button" onclick="getProcedures()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
               </form>
 
+              <h5>Search for Procedure: <input type="text" id="place" value=""> <button id="submitButton"
+                class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures();">Submit</button>
 
-              <!-- Search for Provider: <input type="text" id="place" value="">
-              <button onclick="getProviders()">Submit</button>
-          
-                <div id="container"></div>
-                <script>
-                  
-                    function insert(prov) {
-                      
-                      var div = document.getElementById('container');
-                      var child_div = document.createElement('div');
-                      var prov_name = prov.procedure_Def;
-                      child_div.innerHTML = `<p>${prov_name}</p>`;
-                      div.appendChild(child_div)
-                    }
-                    function getProviders() {
-                      //addFeature({});
-                      var url = `https://api.team5agile.dumitruvulpe.com`;
-                      var uri = `/procedures/?search_query=`;
-                      var placename = document.getElementById("place").value;
-                      
-                      fetch(url+uri+placename)
-                        .then((res) => {
-                          return res.json();
-                        })
-                        .then((data) => {
-                          console.log(data[0])
-                          data[0].forEach(e => {
-                            insert(e)
+              <script>
+                var input = document.getElementById("place");
+                input.addEventListener("keyup", function (event) {
+                  if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("submitButton").click();
+                  }
+                });
+              </script>
+    
+              <div id="container"></div>
+              <script>
+                // function displaySort() {
+                //   if(document.getElementById("sort").style.display = "none") {
+                //     document.getElementById("sort").style.display = "inline";
+                //   } else {
+                //     document.getElementById("sort").style.display = "none";
+                //   }
+                // }
+    
+                function insert(prov) {
+    
+                  var div = document.getElementById('container');
+                  var child_div = document.createElement('div');
+                  var pro_name = prov.procedure_Def;
+                  var prov_name = prov.provider_Name;
+                  var pro_price = prov.avg_Medicare_Payments;
+                  child_div.innerHTML = `<p>${prov_name}: ${pro_name}: $${pro_price} </p>`;
+                  div.appendChild(child_div)
+    
+                }
+    
+                function getProcedures() {
+                  var url = `https://api.team5agile.dumitruvulpe.com`;
+                  var pro_uri = `/procedures/?search_query=`;
+                  var procedureName = document.getElementById("place").value;
+    
+                  fetch(url + pro_uri + procedureName)
+                    .then((res) => {
+                      return res.json();
+                    })
+                    .then((data) => {
+                      //console.log(data)
+                      data.forEach(e => {
+                        insert(e)
+                        
+                        searchForProviderZip(e.provider_Zip)
+                          .then((res) => {
+                            //do smth with res
+                            //console.log('resolve')
+                            createGeoJSON(data, e, res)
+                          }).catch((err) => {
+                            console.log('reject')
+                            console.log(err)
+                            //deal with err
                           });
-                        })
-                        .catch((error) => {
-                          console.log(error)
-                        });
+                      });
+                    })
+                    .catch((error) => {
+                      console.log(error)
+                    });
+    
+                }
+    
+                function searchForProviderZip(zip_code) {
+                  return new Promise((resolve, reject) => {
+                    var url = `https://api.team5agile.dumitruvulpe.com`;
+                    var zip_uri = '/zip2coords?zip=';
+                    fetch(url + zip_uri + zip_code)
+                      .then((res) => {
+                        return res.json();
+                      })
+                      .then((data) => {                  
+                        resolve(data);
+                      })
+                      .catch((err) => {
+                        reject(err);
+                      });
+                  });
+    
+    
+    
+                }
+    
+                const createGeoJSON = (data, e, res) => {
+                      //  console.log("data")
+                      //  console.log(data) //all procedures in array
+                      //  console.log("e")
+                      //  console.log(e) //each individual procedure
+                      //  console.log("res")
+                      //  console.log(res) //each individual zip code coords
+                      //  console.log("data[0]")
+                      //  console.log(data[0]) //first provider in array
+                      
+                        const newdata = [
+                              {
+                                  lat: res[0].zip_Lat,
+                                  lng: res[0].zip_Long
+                              }
+                          ];
+                        //console.log(newdata)
+    
+                        // const provdata = [
+                        //   {
+                        //   procedure_ID: e.procedure_ID,
+                        //   procedure_Def: e.procedure_Def,
+                        //   provider_Name: e.provider_Name,
+                        //   provider_StreetAdd: e.provider_StreetAdd,
+                        //   provider_City: e.provider_City,
+                        //   provider_State: e.provider_State,
+                        //   provider_Zip: e.provider_Zip,
+                        //   avg_Covered_Charges: e.avg_Covered_Charges,
+                        //   avg_Total_Payments: e.avg_Total_Payments,
+                        //   avg_Medicare_Payments: e.avg_Medicare_Payments,
+                        //   provider_referral: e.provider_referral
+                        //   }
+                        // ]
+                        // //console.log(provdata[0])
+    
+                          newdata[0]["procedure_ID"] = e.procedure_ID;
+                          newdata[0]["procedure_Def"] = e.procedure_Def;
+                          newdata[0]["provider_Name"] = e.provider_Name;
+                          newdata[0]["provider_StreetAdd"] = e.provider_StreetAdd;
+                          newdata[0]["provider_City"] = e.provider_City;
+                          newdata[0]["provider_State"] =  e.provider_State;
+                          newdata[0]["provider_Zip"] = e.provider_Zip;
+                          newdata[0]["avg_Covered_Charges"] = e.avg_Covered_Charges;
+                          newdata[0]["avg_Total_Payments"] = e.avg_Total_Payments;
+                          newdata[0]["avg_Medicare_Payments"] = e.avg_Medicare_Payments;
+                          newdata[0]["provider_referral"] = e.provider_referra;
+    
+                        const dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
+                        output = JSON.stringify(dataGeoJSON, null, 4);
+                        console.log(output)
+    
+                   }
+    
+              /**
+   * Assign a unique id to each provider. You'll use this `id`
+   * later to associate each point on the map with a listing
+   * in the sidebar.
+  */
+  newdata[0].features.forEach(function(newdata, i){
+    newdata.properties.id = i;
+  });
 
-                    }
-                </script> -->
+  /**
+   * Wait until the map loads to make changes to the map.
+  */
+  map.on('load', function (e) {
+    /** 
+     * This is where your '.addLayer()' used to be, instead
+     * add only the source without styling a layer
+    */
+    map.addSource("provider", {
+      "type": "geojson",
+      "data": newdata
+    });
+
+    /**
+     * Add all the things to the page:
+     * - The location listings on the side of the page
+     * - The markers onto the map
+    */
+    buildLocationList(newdata);
+    addMarkers();
+  });
+
+  /**
+   * Add a marker to the map for every provider listing.
+  **/
+  function addMarkers() {
+    /* For each feature in the GeoJSON object above: */
+    newdata.features.forEach(function(marker) {
+      /* Create a div element for the marker. */
+      var el = document.createElement('div');
+      /* Assign a unique `id` to the marker. */
+      el.id = "marker-" + marker.properties.id;
+      /* Assign the `marker` class to each marker for styling. */
+      el.className = 'marker';
+      
+      /**
+       * Create a marker using the div element
+       * defined above and add it to the map.
+      **/
+      new mapboxgl.Marker(el, { offset: [0, -23] })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+
+      /**
+       * Listen to the element and when it is clicked, do three things:
+       * 1. Fly to the point
+       * 2. Close all other popups and display popup for clicked provider
+       * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+      **/
+      el.addEventListener('click', function(e){
+        /* Fly to the point */
+        flyToProvider(marker);
+        /* Close all other popups and display popup for clicked provider */
+        createPopUp(marker);
+        /* Highlight listing in sidebar */
+        var activeItem = document.getElementsByClassName('active');
+        e.stopPropagation();
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+        var listing = document.getElementById('listing-' + marker.properties.id);
+        listing.classList.add('active');
+      });
+    });
+  }
+
+  /**
+   * Add a listing for each provider to the sidebar.
+  **/
+  function buildLocationList(data) {
+    var x = document.getElementById("listings");
+      if (x.style.display === "none") {
+       x.style.display = "block";
+      }
+    data.features.forEach(function(newdata, i){
+      /**
+       * Create a shortcut for `provider.properties`,
+       * which will be used several times below.
+      **/
+      var prop = newdata.properties;
+
+      /* Add a new listing section to the sidebar. */
+      var listings = document.getElementById('listings');
+      var listing = listings.appendChild(document.createElement('div'));
+      /* Assign a unique `id` to the listing. */
+      listing.id = "listing-" + prop.id;
+      /* Assign the `item` class to each listing for styling. */
+      listing.className = 'item';
+
+      /* Add the link to the individual listing created above. */
+      var link = listing.appendChild(document.createElement('a'));
+      link.href = '#';
+      link.className = 'title';
+      link.id = "link-" + prop.id;
+      link.innerHTML = prop.provider_City;
+
+      /* Add details to the individual listing. */
+      var details = listing.appendChild(document.createElement('div'));
+      details.innerHTML = prop.avg_Total_Payments;
+      if (prop.provider_StreetAdd) {
+        details.innerHTML += ' · ' + prop.provider_Name;
+      }
+
+      /**
+       * Listen to the element and when it is clicked, do four things:
+       * 1. Update the `currentFeature` to the provider associated with the clicked link
+       * 2. Fly to the point
+       * 3. Close all other popups and display popup for clicked provider
+       * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+      **/
+      link.addEventListener('click', function(e){
+        for (var i=0; i < data.features.length; i++) {
+          if (this.id === "link-" + data.features[i].properties.id) {
+            var clickedListing = data.features[i];
+            flyToProvider(clickedListing);
+            createPopUp(clickedListing);
+          }
+        }
+        var activeItem = document.getElementsByClassName('active');
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+        this.parentNode.classList.add('active');
+      });
+    });
+  }
+
+  /**
+   * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+   * a given center point.
+  **/
+  function flyToProvider(currentFeature) {
+    map.flyTo({
+      center: currentFeature.geometry.coordinates,
+      zoom: 15
+    });
+  }
+
+  /**
+   * Create a Mapbox GL JS `Popup`.
+  **/
+  function createPopUp(currentFeature) {
+    var popUps = document.getElementsByClassName('mapboxgl-popup');
+    if (popUps[0]) popUps[0].remove();
+    var popup = new mapboxgl.Popup({closeOnClick: false})
+      .setLngLat(currentFeature.geometry.coordinates)
+      .setHTML('<h3>Sweetgreen</h3>' +
+        '<h4>' + currentFeature.properties.provider_City + '</h4>')
+      .addTo(map);
+  }
+
+
+              </script>
             
             </div>
           </div>
