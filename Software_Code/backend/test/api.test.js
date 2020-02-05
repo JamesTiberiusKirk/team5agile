@@ -22,7 +22,7 @@ describe('Tests the API', () => {
   });
 
   after((done) => {
-    this.db.closeConn().then(() => {
+    this.db.closeConn().then(()=>{
       done()
     });
   });
@@ -35,34 +35,67 @@ describe('Tests the API', () => {
         let body = res.body;
         expect(body).to.be.array();
         done();
-      }).catch((err) => {
+      }).catch((err)=>{
         done(err);
       })
   });
 
-  it('GET /procedures based on price filtering', (done) => {
+// 33.841338134379676
+
+  //test that search for procedure works 
+  it('does the search procedure return anything', (done)=>{
     request(this.app)
-      .get(`/procedures?search_query=293&price_min=1000&price_max=4000`)
+      .get('/procedures?search_query=SPINAL FUSION')
       .expect(200)
-      .then((res) => {
+      .then((res)=>{
         let body = res.body;
         expect(body).to.be.array();
         done();
-      }).catch((err) => {
+      }).catch((err)=>{
         done(err);
       });
   });
 
-  // 33.841338134379676
-  it('GET /procedures based on location', (done) => {
+  //test that search for procedure works (code)
+  it('does the search procedure return anything from code', (done)=>{
     request(this.app)
-      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .get('/procedures?search_query=460')
       .expect(200)
-      .then((res) => {
+      .then((res)=>{
         let body = res.body;
         expect(body).to.be.array();
         done();
-      }).catch((err) => {
+      }).catch((err)=>{
+        done(err);
+      });
+  });
+
+  //test searching for a procedure that doesn't exist. make sure it still returns 200 but dont expect anything
+  it('Does searching for a procedure that doesnt exist still return 200 with no results', (done)=>{
+    request(this.app)
+      .get('/procedures?search_query=fake procedure')
+      .expect(200)
+      .then((res)=>{
+        let body = res.body;
+        expect(body).to.be.array().that.is.empty;
+        done();
+      }).catch((err)=>{
+        done(err);
+      });
+  });
+  
+  //MAKE TESTS ON ORDERING AND CONSTRAINTS
+
+  //ovarll test for procedure test
+  it('searching for a procedure based on location', (done)=>{
+    request(this.app)
+      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .expect(200)
+      .then((res)=>{
+        let body = res.body;
+        expect(body).to.be.array();
+        done();
+      }).catch((err)=>{
         done(err);
       });
   });
