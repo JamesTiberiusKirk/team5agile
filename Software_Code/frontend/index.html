@@ -165,15 +165,16 @@
                   return res.json();
                 })
                 .then((data) => {
-                  // console.log(data[0])
-                  data[0].forEach(e => {
+                  console.log(data)
+                  data.forEach(e => {
                     insert(e)
+                    
                     searchForProviderZip(e.provider_Zip)
                       .then((res) => {
                         //do smth with res
                         //console.log('resolve')
-                        console.log(res)
-                        createGeoJSON(res)
+                        //console.log(res) //long and lat
+                        //createGeoJSON(res)
                       }).catch((err) => {
                         console.log('reject')
                         console.log(err)
@@ -197,9 +198,7 @@
                     return res.json();
                   })
                   .then((data) => {
-                    console.log('searchProvZip')
-                    console.log(data)
-                    
+                    console.log(data)                   
                     resolve(data);
                   })
                   .catch((err) => {
@@ -215,8 +214,8 @@
                    console.log("tester")
                    const data = [
                         {
-                            lat: data[0][document.getElementById(e.zip_Lat).value],
-                            lng: data[0][document.getElementById(e.zip_Long).value]
+                            lat: res.zip_Lat,
+                            lng: res.zip_Long
                         }
                     ];
                    data[0][document.getElementById("procedure_ID").value] = document.getElementById(e.procedure_ID).value;
