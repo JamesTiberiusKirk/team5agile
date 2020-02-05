@@ -6,6 +6,7 @@
   "scripts": {
     "testwin": "./node_modules/.bin/mocha.cmd --recursive --exit",
     "test": "./node_modules/.bin/mocha --recursive --exit",
+    "monwin": "./node_modules/.bin/nodemon.cmd main.js",
     "mon": "./node_modules/.bin/nodemon main.js"
   },
   "repository": {
