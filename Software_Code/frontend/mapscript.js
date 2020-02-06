@@ -1,3 +1,4 @@
+
 function openNav() {
   document.getElementById("myNav").style.width = "33.3333%";
 }
@@ -101,30 +102,30 @@ function closeNav() {
             //console.log(data)
             data.forEach(e => {
               insert(e)
-              
               searchForProviderZip(e.provider_Zip)
-                .then((res) => {
-                  //do smth with res
-                  //console.log('resolve')
-                  createGeoJSON(data, e, res)
-                }).catch((err) => {
-                  console.log('reject')
-                  console.log(err)
-                  //deal with err
-                });
+              .then((res) => {
+                //do smth with res
+                //console.log('resolve')
+                createGeoJSON(data, e, res)
+                mapWait(dataGeoJSON)
+              }).catch((err) => {
+                console.log('reject')
+                console.log(err)
+                //deal with err
+              });
             });
           })
           .catch((error) => {
             console.log(error)
           });
-
-      }
-
-      function searchForProviderZip(zip_code) {
-        return new Promise((resolve, reject) => {
-          var url = `https://api.team5agile.dumitruvulpe.com`;
-          var zip_uri = '/zip2coords?zip=';
-          fetch(url + zip_uri + zip_code)
+          
+        }
+        
+        function searchForProviderZip(zip_code) {
+          return new Promise((resolve, reject) => {
+            var url = `https://api.team5agile.dumitruvulpe.com`;
+            var zip_uri = '/zip2coords?zip=';
+            fetch(url + zip_uri + zip_code)
             .then((res) => {
               return res.json();
             })
@@ -134,91 +135,83 @@ function closeNav() {
             .catch((err) => {
               reject(err);
             });
-        });
-
-      }
-
-      var newdata;
-      var dataGeoJSON;
-      var id = `id`;
-      var i = 0;
-
-      const createGeoJSON = (data, e, res) => {
-            //  console.log("data")
-            //  console.log(data) //all procedures in array
-            //  console.log("e")
-            //  console.log(e) //each individual procedure
-            //  console.log("res")
-            //  console.log(res) //each individual zip code coords
-            //  console.log("data[0]")
-            //  console.log(data[0]) //first provider in array
-            
-              newdata = [
-                    {
-                        lat: res[0].zip_Lat,
-                        lng: res[0].zip_Long
-                    }
-                ];
-
-                newdata[0]["procedure_ID"] = e.procedure_ID;
-                newdata[0]["procedure_Def"] = e.procedure_Def;
-                newdata[0]["provider_Name"] = e.provider_Name;
-                newdata[0]["provider_StreetAdd"] = e.provider_StreetAdd;
-                newdata[0]["provider_City"] = e.provider_City;
-                newdata[0]["provider_State"] =  e.provider_State;
-                newdata[0]["provider_Zip"] = e.provider_Zip;
-                newdata[0]["avg_Covered_Charges"] = e.avg_Covered_Charges;
-                newdata[0]["avg_Total_Payments"] = e.avg_Total_Payments;
-                newdata[0]["avg_Medicare_Payments"] = e.avg_Medicare_Payments;
-                newdata[0]["provider_referral"] = e.provider_referral;
-                newdata[0][id] = i++;
-                
-                dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
-                output = JSON.stringify(dataGeoJSON, null, 4);
-                // console.log(output)
-                console.log(dataGeoJSON)          
+          });
+          
         }
+        
+        var newdata;
+        var dataGeoJSON;
+        var id = `id`;
+        var i = 0;
+        var output;
+        
+        const createGeoJSON = (data, e, res) => {
+          //  console.log("data")
+          //  console.log(data) //all procedures in array
+          //  console.log("e")
+          //  console.log(e) //each individual procedure
+          //  console.log("res")
+          //  console.log(res) //each individual zip code coords
+          //  console.log("data[0]")
+          //  console.log(data[0]) //first provider in array
+          
+          newdata = [
+            {
+              lat: res[0].zip_Lat,
+              lng: res[0].zip_Long
+            }
+          ];
+          
+          newdata[0]["procedure_ID"] = e.procedure_ID;
+          newdata[0]["procedure_Def"] = e.procedure_Def;
+          newdata[0]["provider_Name"] = e.provider_Name;
+          newdata[0]["provider_StreetAdd"] = e.provider_StreetAdd;
+          newdata[0]["provider_City"] = e.provider_City;
+          newdata[0]["provider_State"] =  e.provider_State;
+          newdata[0]["provider_Zip"] = e.provider_Zip;
+          newdata[0]["avg_Covered_Charges"] = e.avg_Covered_Charges;
+          newdata[0]["avg_Total_Payments"] = e.avg_Total_Payments;
+          newdata[0]["avg_Medicare_Payments"] = e.avg_Medicare_Payments;
+          newdata[0]["provider_referral"] = e.provider_referral;
+          newdata[0][id] = i++;
+          
+          dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
+          output = JSON.stringify(dataGeoJSON, null, 4);
+          //console.log(output)
+          //console.log(dataGeoJSON)          
+          //console.log(dataGeoJSON.features[0].properties.procedure_ID)
+        }
+        
+        function mapWait(dataGeoJSON){
+          /**
+           * Wait until the map loads to make changes to the map.
+           */
+          
+          //map.on('load', function () {
+           
+            map.addSource("dataGeoJSON", {
+              "type": "geojson",
+              "data": dataGeoJSON,
+              //"properties.id": i++
+            });
 
-      
-      /**
-      * Assign a unique id to each provider. You'll use this `id`
-      * later to associate each point on the map with a listing
-      * in the sidebar. DONE ABOVE WHEN ASSIGNING DATA
-      */                
-      // dataGeoJSON.features.forEach(function (dataGeoJSON, i) {
-      //   dataGeoJSON.properties.id = i;
-      // });
-      
-      
-      /**
-       * Wait until the map loads to make changes to the map.
-       */
-      map.on('load', function (e) {
-        /** 
-         * This is where your '.addLayer()' used to be, instead
-         * add only the source without styling a layer
-         */
-        map.addSource("dataGeoJSON", {
-          "type": "geojson",
-          "data": dataGeoJSON
-        });
-        
-        
-        /**
-         * Add all the things to the page:
-         * - The location listings on the side of the page
-         * - The markers onto the map
-         */
-        buildLocationList(dataGeoJSON);
-        addMarkers();
-      });
-      
-      /**
-       * Add a marker to the map for every provider listing.
-       **/
-      function addMarkers() {
-        /* For each feature in the GeoJSON object above: */
-        dataGeoJSON.features.forEach(function(marker) {
+            /**
+             * Add all the things to the page:
+             * - The location listings on the side of the page
+             * - The markers onto the map
+             */
+            buildLocationList(dataGeoJSON);
+            addMarkers();
+          //});
+          
+        }
+          /**
+           * Add a marker to the map for every provider listing.
+           **/
+          function addMarkers() {
+            
+            /* For each feature in the GeoJSON object above: */
+          dataGeoJSON.features.forEach(function(marker) {
           /* Create a div element for the marker. */
           var el = document.createElement('div');
           /* Assign a unique `id` to the marker. */
@@ -341,7 +334,7 @@ function closeNav() {
             '<h4>' + currentFeature.properties.provider_City + '</h4>')
           .addTo(map);
       }
-  
+    
 //https://docs.mapbox.com/mapbox.js/example/v1.0.0/map-center-geocoding/
 // var geocoder = L.mapbox.geocoder('mapbox.places');
 
