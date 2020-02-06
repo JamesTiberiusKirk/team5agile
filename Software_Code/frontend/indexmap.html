@@ -59,7 +59,7 @@
 
               <script>
                 var input = document.getElementById("inputnameid");
-                input.addEventListener("keyup", function (event) {
+                input.addEventListener(function (event) {
                   if (event.keyCode === 13) {
                     event.preventDefault();
                     document.getElementById("submit-button").click();
@@ -86,7 +86,7 @@
                   var pro_name = prov.procedure_Def;
                   var prov_name = prov.provider_Name;
                   var pro_price = prov.avg_Medicare_Payments;
-                  child_div.innerHTML = `<p>${prov_name}: ${pro_name}: $${pro_price} </p>`;
+                  child_div.innerHTML = `<p>${prov_name}: ${pro_name}: ${pro_price} </p>`;
                   div.appendChild(child_div)
     
                 }
