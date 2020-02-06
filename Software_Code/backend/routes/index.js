@@ -41,6 +41,7 @@ router.get('/providers', (req, res) => {
 
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
+    let resArr = [];
     if (queryParams) {
         let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Medicare_Payments","ASC");`
         db.conn.query(sql, (err, procResult) => {
@@ -48,16 +49,17 @@ router.get('/procedures', (req, res) => {
                 res.status(500).send(err);
                 return console.log(`[GET] /procedures error: ${err}`);
             }
+            resArr = procResult[0];
 
             if (req.query.rad && req.query.lat && req.query.long) {
+                let tmpArr = [];
                 let sql = `SELECT * FROM healthcare.zip_coords;`;
                 db.conn.query(sql, (err, zip2CoordsRes) => {
                     if (err) {
                         res.status(500).send(err);
                         return console.log(`[GET] / error: ${req.query.rad}`);
                     }
-                    let locArr = [];
-                    procResult[0].forEach(p => {
+                    resArr.forEach(p => {
                         let coords = zip2CoordsRes.find(z => z.zip_Code == p.provider_Zip);
 
                         if (!coords) return// console.log(`Nothing found for ${p.provider_Zip}`)
@@ -72,32 +74,34 @@ router.get('/procedures', (req, res) => {
                             newProc.provider_Latitude = coords.zip_Lat;
                             newProc.provider_Longitude = coords.zip_Long;
                             newProc.distance = dis;
-                            locArr.push(newProc);
+                            tmpArr.push(newProc);
                         }
                     });
                     if (req.query.distance_sort == 'true') {
-                        locArr.sort((a, b) => {
+                        resArr.sort((a, b) => {
                             if (a.distance > b.distance) return 1;
                             if (a.distance < b.distance) return -1;
                             return 0;
                         })
                     }
-                    res.status(200).send(locArr);
+                    resArr = tmpArr;
                 });
 
-            } else if (req.query.price_min && req.query.price_max) {
-                let procArr = [];
+            }
+
+            if (req.query.price_min && req.query.price_max) {
                 let price_min = req.query.price_min;
                 let price_max = req.query.price_max;
-                procResult[0].forEach((p) => {
+                let tmpArr = [];
+                resArr.forEach((p) => {
                     if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max) {
-                        procArr.push(p);
+                        tmpArr.push(p);
                     }
                 });
-                res.status(200).send(procArr);
-            } else {
-                res.status(200).send(procResult[0]);
+                resArr = tmpArr;
             }
+            res.status(200).send(resArr);
+
 
         });
     } else {
