@@ -1,27 +1,12 @@
 # Routes
 
-## Registration & Login
-- POST /users/registration
-    - Request:
-        - personal details (name, emai, etc)
-        - password
-        - location
-    - Resolve
-        - 200 OK
-- POST /users/login
-    - Request:
-        - username
-        - password
-    - Resolve:
-        - 201 Logged In
-        - 401 Wrong username/password
-
 ## General App
-- GET /procedures/?search_query=testQuery&rad=radius&lat=latitude&long=longitude
+- GET /procedures/?search_query=testQuery&rad=radius&lat=latitude&long=longitude&distance_sort=true
     - Request:
         - query pattern in the url
         - optional radius, longitude and latitude for location based search
             - radius and returning distance will be in miles
+        - optional distance_sort variable to enable sorting
     - Resolve:
         - JSON array  
 ```
