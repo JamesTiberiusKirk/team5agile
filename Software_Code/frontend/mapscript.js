@@ -188,10 +188,14 @@ function closeNav() {
            */
           
           //map.on('load', function () {
+
+          if(map.getSource(dataGeoJSON)){
+            map.removeSource(dataGeoJSON);
+          }
            
             map.addSource("dataGeoJSON", {
-              "type": "geojson",
-              "data": dataGeoJSON,
+              type: "geojson",
+              data: dataGeoJSON,
               "properties.id": i++
             });
 
@@ -296,13 +300,13 @@ function closeNav() {
            * 4. Highlight listing in sidebar (and remove highlight for all other listings)
           **/
           link.addEventListener('click', function(e){
-            for (var i=0; i < dataGeoJSON.features.length; i++) {
-              if (this.id === "link-" + dataGeoJSON.features[i].properties.id) {
-                var clickedListing = dataGeoJSON.features[i];
+            //for (var i=0; i < 5; i++) {
+              if (this.id === "link-" + dataGeoJSON.properties.id) {
+                var clickedListing = dataGeoJSON;
                 flyToProvider(clickedListing);
                 createPopUp(clickedListing);
               }
-            }
+            //}
             var activeItem = document.getElementsByClassName('active');
             if (activeItem[0]) {
               activeItem[0].classList.remove('active');
@@ -319,7 +323,7 @@ function closeNav() {
       function flyToProvider(currentFeature) {
         map.flyTo({
           center: currentFeature.geometry.coordinates,
-          zoom: 15
+          zoom: 10
         });
       }
 
