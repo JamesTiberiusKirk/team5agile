@@ -18,6 +18,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css' rel='stylesheet' />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
 </head>
 
 <body>
@@ -99,7 +100,29 @@
       <div class="row">
         <div class="col-md-12">
           <h5>Search for Procedure: <input type="text" id="place" value=""> <button id="submitButton"
-              class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures()">Submit</button></h5>
+              class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures(); displaySort()">Submit</button>
+              <div class="sort" id="sort" style="display:none">
+                <div class="btn-group" style="">
+                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sort by</button>
+                  <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
+                  </div>
+                </div>
+                <div class="btn-group" style="">
+                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
+                  <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
+                  </div>
+                </div>
+              </div>
+            </h5>
 
           <script>
             var input = document.getElementById("place");
@@ -113,7 +136,13 @@
 
           <div id="container"></div>
           <script>
-
+            function displaySort() {
+              if(document.getElementById("sort").style.display = "none") {
+                document.getElementById("sort").style.display = "inline";
+              } else {
+                document.getElementById("sort").style.display = "none";
+              }
+            }
 
             function insert(prov) {
 
@@ -137,15 +166,15 @@
                   return res.json();
                 })
                 .then((data) => {
-                  // console.log(data[0])
-                  data[0].forEach(e => {
+                  //console.log(data)
+                  data.forEach(e => {
                     insert(e)
+                    
                     searchForProviderZip(e.provider_Zip)
                       .then((res) => {
                         //do smth with res
-                        console.log('resolve')
-                        console.log(res)
-                        //convertGeoJSON()
+                        //console.log('resolve')
+                        createGeoJSON(data, e, res)
                       }).catch((err) => {
                         console.log('reject')
                         console.log(err)
@@ -163,15 +192,11 @@
               return new Promise((resolve, reject) => {
                 var url = `https://api.team5agile.dumitruvulpe.com`;
                 var zip_uri = '/zip2coords?zip=';
-                //console.log(zip_code)
                 fetch(url + zip_uri + zip_code)
                   .then((res) => {
                     return res.json();
                   })
-                  .then((data) => {
-                    console.log('searchProvZip')
-                    console.log(data)
-                    
+                  .then((data) => {                  
                     resolve(data);
                   })
                   .catch((err) => {
@@ -183,33 +208,59 @@
 
             }
 
-            function convertGeoJSON() {
-              console.log(hi)
-              //   const createGeoJSON = (res) => {
-              //     const data = [
-              //          {
-              //              lat: document.getElementById(res.zip_Lat).value,
-              //              lng: document.getElementById(res.zip_Long).value
-              //          }
-              //      ];
-              //     data[0][document.getElementById("procedure_ID").value] = document.getElementById(res.procedure_ID).value;
+            const createGeoJSON = (data, e, res) => {
+                  //  console.log("data")
+                  //  console.log(data) //all procedures in array
+                  //  console.log("e")
+                  //  console.log(e) //each individual procedure
+                  //  console.log("res")
+                  //  console.log(res) //each individual zip code coords
+                  //  console.log("data[0]")
+                  //  console.log(data[0]) //first provider in array
+                  
+                    const newdata = [
+                          {
+                              lat: res[0].zip_Lat,
+                              lng: res[0].zip_Long
+                          }
+                      ];
+                    //console.log(newdata)
 
-              //     data[0][document.getElementById("procedure_Def").value] = document.getElementById(res.procedure_Def).value;
-              //     data[0][document.getElementById("provider_Name").value] = document.getElementById(res.provider_Name).value;
-              //     data[0][document.getElementById("provider_StreetAdd").value] = document.getElementById(res.provider_StreetAdd).value;
-              //     data[0][document.getElementById("provider_City").value] = document.getElementById(res.provider_City).value;
-              //     data[0][document.getElementById("provider_State").value] = document.getElementById(res.provider_State).value;
-              //     data[0][document.getElementById("provider_Zip").value] = document.getElementById(res.provider_Zip).value;
-              //     data[0][document.getElementById("avg_Covered_Charges").value] = document.getElementById(res.avg_Covered_Charges).value;
-              //     data[0][document.getElementById("avg_Total_Payments").value] = document.getElementById(res.avg_Total_Payments).value;
-              //     data[0][document.getElementById("avg_Medicare_Payments").value] = document.getElementById(res.avg_Medicare_Payments).value;
-              //     data[0][document.getElementById("provider_referral").value] = document.getElementById(res.provider_referral).value;
+                    // const provdata = [
+                    //   {
+                    //   procedure_ID: e.procedure_ID,
+                    //   procedure_Def: e.procedure_Def,
+                    //   provider_Name: e.provider_Name,
+                    //   provider_StreetAdd: e.provider_StreetAdd,
+                    //   provider_City: e.provider_City,
+                    //   provider_State: e.provider_State,
+                    //   provider_Zip: e.provider_Zip,
+                    //   avg_Covered_Charges: e.avg_Covered_Charges,
+                    //   avg_Total_Payments: e.avg_Total_Payments,
+                    //   avg_Medicare_Payments: e.avg_Medicare_Payments,
+                    //   provider_referral: e.provider_referral
+                    //   }
+                    // ]
+                    // //console.log(provdata[0])
 
-              //     const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
-              //     document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
-              //     //console.log(dataGeoJSON)
-              // }
-            }
+                      newdata[0]["procedure_ID"] = e.procedure_ID;
+                      newdata[0]["procedure_Def"] = e.procedure_Def;
+                      newdata[0]["provider_Name"] = e.provider_Name;
+                      newdata[0]["provider_StreetAdd"] = e.provider_StreetAdd;
+                      newdata[0]["provider_City"] = e.provider_City;
+                      newdata[0]["provider_State"] =  e.provider_State;
+                      newdata[0]["provider_Zip"] = e.provider_Zip;
+                      newdata[0]["avg_Covered_Charges"] = e.avg_Covered_Charges;
+                      newdata[0]["avg_Total_Payments"] = e.avg_Total_Payments;
+                      newdata[0]["avg_Medicare_Payments"] = e.avg_Medicare_Payments;
+                      newdata[0]["provider_referral"] = e.provider_referra;
+
+                    const dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
+                    output = JSON.stringify(dataGeoJSON, null, 4);
+                    console.log(output)
+
+               }
+
           </script>
         </div>
       </div>
