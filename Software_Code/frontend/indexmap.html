@@ -45,7 +45,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <form id="c_form-h" class="" style="">
+              <form id="c_form-h" class="" style="" onSubmit="return false;">
                 <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
                   <div class="col-10">
                     <div class="form-group row">
@@ -54,7 +54,7 @@
                   </div>
                 </div>
                 <!-- Use any element to open/show the overlay navigation menu -->
-                <span onclick="openNav()"><button class="submit-button" onclick="getProcedures()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
+                <span onclick="openNav()"><button class="submit-button" id="submit-button" onclick="getProcedures()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
               </form>
 
               <script>
@@ -62,7 +62,7 @@
                 input.addEventListener("keyup", function (event) {
                   if (event.keyCode === 13) {
                     event.preventDefault();
-                    document.getElementById("submitButton").click();
+                    document.getElementById("submit-button").click();
                   }
                 });
               </script>
