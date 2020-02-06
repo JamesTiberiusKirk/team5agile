@@ -6,6 +6,12 @@ const assertArrays = require('chai-arrays');
 const { Db } = require('../db/db');
 const { Server } = require('../server');
 
+const {
+  proc_location_sorting,
+  proc_location,
+  proc_price_filter
+} = require('./data_examples/procedures');
+
 chai.use(assertArrays);
 
 describe('Tests the API', () => {
@@ -47,26 +53,38 @@ describe('Tests the API', () => {
       .then((res) => {
         let body = res.body;
         expect(body).to.be.array();
+        expect(body).to.be.eql(proc_price_filter)
         done();
       }).catch((err) => {
         done(err);
       });
   });
 
-  // 33.841338134379676
   it('GET /procedures based on location', (done) => {
     request(this.app)
-      .get('/procedures?search_query=293&rad=10&lat=34.196159&long=-86.196898')
+      .get('/procedures?search_query=293&rad=100&lat=34.196159&long=-86.196898')
       .expect(200)
       .then((res) => {
         let body = res.body;
         expect(body).to.be.array();
+        expect(body).to.be.eql(proc_location);
         done();
       }).catch((err) => {
         done(err);
       });
   });
 
+  it('GET /procedures based on location with sorting', (done) => {
+    request(this.app)
+      .get('/procedures?search_query=293&rad=100&lat=34.557662&long=-85.79649&distance_sort=true')
+      .expect(200)
+      .then((res) => {
+        let body = res.body;
+        expect(body).to.be.array();
+        expect(body).to.be.eql(proc_location_sorting);
+        done();
+      }).catch((err) => {
+        done(err);
+      });
+  });
 });
-
-
