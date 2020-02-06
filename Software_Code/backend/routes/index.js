@@ -75,6 +75,13 @@ router.get('/procedures', (req, res) => {
                             locArr.push(newProc);
                         }
                     });
+                    if (req.query.distance_sort == 'true') {
+                        locArr.sort((a, b) => {
+                            if (a.distance > b.distance) return 1;
+                            if (a.distance < b.distance) return -1;
+                            return 0;
+                        })
+                    }
                     res.status(200).send(locArr);
                 });
 
@@ -83,14 +90,14 @@ router.get('/procedures', (req, res) => {
                 let price_min = req.query.price_min;
                 let price_max = req.query.price_max;
                 procResult[0].forEach((p) => {
-                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max ){
+                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max) {
                         procArr.push(p);
                     }
                 });
                 res.status(200).send(procArr);
             } else {
                 res.status(200).send(procResult[0]);
-            } 
+            }
 
         });
     } else {
