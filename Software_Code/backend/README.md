@@ -1,39 +1,51 @@
 # Routes
 
-## Registration & Login
-- POST /users/registration
-    - Request:
-        - personal details (name, emai, etc)
-        - password
-        - location
-    - Resolve
-        - 200 OK
-- POST /users/login
-    - Request:
-        - username
-        - password
-    - Resolve:
-        - 201 Logged In
-        - 401 Wrong username/password
-
 ## General App
-- GET /procedures/?search_query=testQuery&zip_code=testZip
+- GET /procedures/?search_query=testQuery&rad=radius&lat=latitude&long=longitude&distance_sort=true
     - Request:
         - query pattern in the url
-        - optional zip_code in the url for location based search
+        - optional radius, longitude and latitude for location based search
+            - radius and returning distance will be in miles
+        - optional distance_sort variable to enable sorting
     - Resolve:
-        - JSON list 
+        - JSON array  
 ```
+With only query based search
 [
     {
-        provider_Name,
-        provider_StreetAdd,
-        provider_City,
-        avg_Covered_Charges,
-        avg_Total_Payments,
-        avg_Medicare_Payemnt,
-        procedure_ID,
-        procedure_Def
+        "procedure_ID": "293",
+        "procedure_Def": " HEART FAILURE & SHOCK W/O CC/MCC",
+        "provider_Name": "SHARKEY ISSAQUENA COMMUNITY HOSPITAL",
+        "provider_StreetAdd": "47 SOUTH FOURTH ST",
+        "provider_City": "ROLLING FORK",
+        "provider_State": "MS",
+        "provider_Zip": "39159",
+        "avg_Covered_Charges": 3889.92,
+        "avg_Total_Payments": 4785.67,
+        "avg_Medicare_Payments": 3700.67,
+        "provider_referral": "MS - Jackson",
+        "provider_Latitude": null,
+        "provider_Longitude": null
+    }
+]
+
+With all of the optional params 
+[
+    {
+        "procedure_ID": "293",
+        "procedure_Def": " HEART FAILURE & SHOCK W/O CC/MCC",
+        "provider_Name": "SHARKEY ISSAQUENA COMMUNITY HOSPITAL",
+        "provider_StreetAdd": "47 SOUTH FOURTH ST",
+        "provider_City": "ROLLING FORK",
+        "provider_State": "MS",
+        "provider_Zip": "39159",
+        "avg_Covered_Charges": 3889.92,
+        "avg_Total_Payments": 4785.67,
+        "avg_Medicare_Payments": 3700.67,
+        "provider_referral": "MS - Jackson",
+        "provider_Latitude": 32.826566,
+        "provider_Longitude": -90.935377,
+        "distance": 288.87638863119787
     }
 ]
 ```
@@ -41,7 +53,7 @@
     - Request:
         - Query pattern in the URL
     - Resolve:
-        - JSON list
+        - JSON array
 ```
 [
     {
@@ -59,7 +71,7 @@
     - Request:
         - URL parameter for a zip
     - Resolve:
-        - JSON list
+        - JSON array
 
 ```
 [
@@ -78,23 +90,25 @@ You run procedures by using the CALL function in SQL. For example CALL sortRefin
 ### Available Procedures (Queries)
 - getAllOptions()
 Returns the whole dataset
-- getRefineOptions(procedure id, procedure name/description, provider name, provider state)
-Returns an unsorted set of data from a query matching any of the parameters entered
-- sortRefineOptions(procedure id, procedure name/description, provider name, provider state, column to sort by, sort ASC or DESC)
-Returns a set of data from a query matching any of the parameters entered, and sorted on the specified column either ascending or descending (ASC or DESC)
+- getRefineOptions(procedure id, procedure name/description, provider name, provider state)  
+    Returns an unsorted set of data from a query matching any of the parameters entered
+- sortRefineOptions(procedure id, procedure name/description, provider name, provider state, column to sort by, sort ASC or DESC)  
+    Returns a set of data from a query matching any of the parameters entered, and sorted on the specified column either ascending or descending (ASC or DESC)  
+- sortOptionsPages(procedure id, procedure name/description, provider name, provider state, column to sort by, sort ASC or DESC, number of rows to return, starting row number)  
+    Returns a set of data from a query matching any of the parameters entered, and sorted on the specified column either ascending or descending (ASC or DESC). Also send how many rows you want to return, and from where you want to start.  
 - checkUser(usernameToSearch, passwordToCheck)
-Returns True if user exists and entered correct password
-Returns False if user does not exist, or they do exist but entered wrong password
+    Returns True if user exists and entered correct password  
+    Returns False if user does not exist, or they do exist but entered wrong password
 
 ### Available Procedures (Add/Update/Remove Records)
-- insertProcedure(procedure id, procedure definition)
-Adds new record to Procedure table with specified ID and definition
-- insertProvider(provider id, provider name, provider street address, provider state, provider ZIP Code, provider referral region)
-Adds new record to Provider table with specified details
-- insertCosts(procedure id, provider id, avg covered charges, total payments, avg medicare payments)
-Adds new record to Costs table with specified details.
-**Procedure and Provider ID's must already exist in their respective tables, or procedure will fail**
-- addNewUser(username, password)
-Adds new record to Users table with specified username and password
-- addCoordsExistingProvider(provider id, latitude, longitude)
-Adds/updates coordinates to existing provider record, coordinates must be in decimal format.
+- insertProcedure(procedure id, procedure definition)  
+    Adds new record to Procedure table with specified ID and definition
+- insertProvider(provider id, provider name, provider street address, provider state, provider ZIP Code, provider referral region)  
+    Adds new record to Provider table with specified details
+- insertCosts(procedure id, provider id, avg covered charges, total payments, avg medicare payments)  
+    Adds new record to Costs table with specified details.  
+    **Procedure and Provider ID's must already exist in their respective tables, or procedure will fail**
+- addNewUser(username, password)  
+    Adds new record to Users table with specified username and password
+- addCoordsExistingProvider(provider id, latitude, longitude)  
+    Adds/updates coordinates to existing provider record, coordinates must be in decimal format.
