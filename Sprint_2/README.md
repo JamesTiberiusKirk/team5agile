@@ -1,22 +1,52 @@
-# Sprint 1
+---
+03/02/20 Day [1] - Scrum Meeting Summary
+The Scrum Master for this meeting was John
+At 11:30 am
+Members Present:
+Dominika, Dumitru, John, Patrick, Ross, Sophie
 
-All information about your first sprint should be put into this folder. Additionally, the information below should be updated to give a short summary of your daily scrum meetings.
+Members Not Present:
+N/A
+
+Apologies:
+N/A
+
+Summary of Conversation:
+Went over our feedback we recieved about the previous sprint  
 
 ---
-
-## Day [X] - Scrum Meeting summary
-The Scrum Master for this meeting was **Mike Crabb**
-
-### Members Present:
-Mike, Rachel, information
-
-### Members Not Present:
-Naughty Student 1, Naughty Student 2
-
-### Apologies:
-Ill Student 1.
-
-### Summary of Conversation:
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+04/02/20 Day [2] - Scrum Meeting Summary  
+The Scrum Master for this meeting was John  
+At 11:30 am  
+Members Present:  
+Dominika, Dumitru, John, Patrick, Ross, Sophie  
+  
+Members Not Present:  
+N/A  
+  
+Apologies:  
+N/A  
+  
+Summary of Conversation:  
+Updated a lot of documentation (review, retrospective, product backlog, sprint 2 backlog)    
+Front & back-end: carried on working on distance aspects for the calculator and the constariants
+location can now be manually set now
+working on results to match whats on the map
 
 ---
+05/02/20 Day [3] - Scrum Meeting Summary  
+The Scrum Master for this meeting was John  
+At 11:30 am  
+Members Present:  
+Dominika, Dumitru, John, Patrick, Ross, Sophie  
+  
+Members Not Present:  
+N/A  
+  
+Apologies:  
+N/A  
+  
+Summary of Conversation:  
+wrote structure of report to be ready for friday  
+carried on working on constariants for front and back end, some completed  
+some tests written  
