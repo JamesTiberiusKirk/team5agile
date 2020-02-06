@@ -15,9 +15,10 @@ VIEW `options` AS
         `costs`.`avg_Total_Payments` AS `avg_Total_Payments`,
         `costs`.`avg_Medicare_Payments` AS `avg_Medicare_Payments`,
         `provider`.`provider_referral` AS `provider_referral`,
-        `provider`.`provider_Latitude` AS `provider_Latitude`,
-        `provider`.`provider_Longitude` AS `provider_Longitude`
+        `zip_coords`.`zip_Lat` AS `provider_Latitude`,
+        `zip_coords`.`zip_Long` AS `provider_Longitude`
     FROM
-        ((`costs`
+        (((`costs`
         JOIN `procedure` ON ((`costs`.`procedure_ID` = `procedure`.`procedure_ID`)))
         JOIN `provider` ON ((`costs`.`provider_ID` = `provider`.`provider_ID`)))
+        JOIN `zip_coords` ON ((`provider`.`provider_Zip` = `zip_coords`.`zip_Code`)))
