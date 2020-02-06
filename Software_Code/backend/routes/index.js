@@ -49,8 +49,6 @@ router.get('/procedures', (req, res) => {
                 return console.log(`[GET] /procedures error: ${err}`);
             }
 
-            //check for aditional params to filter based on location
-            // if (req.query.rad && req.query.zip) {
             if (req.query.rad && req.query.lat && req.query.long) {
                 let sql = `SELECT * FROM healthcare.zip_coords;`;
                 db.conn.query(sql, (err, zip2CoordsRes) => {
@@ -58,13 +56,8 @@ router.get('/procedures', (req, res) => {
                         res.status(500).send(err);
                         return console.log(`[GET] / error: ${req.query.rad}`);
                     }
-
-                    // zip2CoordsRes[0].forEach((c) => {
-
-                    // });
                     let locArr = [];
                     procResult[0].forEach(p => {
-                        // console.log((zip2CoordsRes));
                         let coords = zip2CoordsRes.find(z => z.zip_Code == p.provider_Zip);
 
                         if (!coords) return// console.log(`Nothing found for ${p.provider_Zip}`)
@@ -97,7 +90,7 @@ router.get('/procedures', (req, res) => {
                 res.status(200).send(procArr);
             } else {
                 res.status(200).send(procResult[0]);
-            } // else not all params provided 
+            } 
 
         });
     } else {
