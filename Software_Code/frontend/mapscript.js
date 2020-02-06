@@ -107,7 +107,6 @@ function closeNav() {
                   //do smth with res
                   //console.log('resolve')
                   createGeoJSON(data, e, res)
-                  writeDataGeoJSON(dataGeoJSON);
                 }).catch((err) => {
                   console.log('reject')
                   console.log(err)
@@ -136,8 +135,6 @@ function closeNav() {
               reject(err);
             });
         });
-
-
 
       }
 
@@ -175,18 +172,14 @@ function closeNav() {
                 newdata[0]["avg_Medicare_Payments"] = e.avg_Medicare_Payments;
                 newdata[0]["provider_referral"] = e.provider_referral;
                 newdata[0][id] = i++;
-
-              dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
-              output = JSON.stringify(dataGeoJSON, null, 4);
-              // console.log(output)
-              console.log(dataGeoJSON)
-              
-              
-
+                
+                dataGeoJSON = GeoJSON.parse(newdata, { Point: ["lat", "lng"] });
+                output = JSON.stringify(dataGeoJSON, null, 4);
+                // console.log(output)
+                console.log(dataGeoJSON)          
         }
 
-        
-
+      
       /**
       * Assign a unique id to each provider. You'll use this `id`
       * later to associate each point on the map with a listing
@@ -195,37 +188,34 @@ function closeNav() {
       // dataGeoJSON.features.forEach(function (dataGeoJSON, i) {
       //   dataGeoJSON.properties.id = i;
       // });
-
-
-  /**
-   * Wait until the map loads to make changes to the map.
-  */
-  map.on('load', function (e) {
-    /** 
-     * This is where your '.addLayer()' used to be, instead
-     * add only the source without styling a layer
-    */
-
-  
-  
-  function addMapAndMarkers(dataGeoJSON) {
-        map.addSource("provider", {
+      
+      
+      /**
+       * Wait until the map loads to make changes to the map.
+       */
+      map.on('load', function (e) {
+        /** 
+         * This is where your '.addLayer()' used to be, instead
+         * add only the source without styling a layer
+         */
+        map.addSource("dataGeoJSON", {
           "type": "geojson",
           "data": dataGeoJSON
         });
-
+        
+        
         /**
          * Add all the things to the page:
          * - The location listings on the side of the page
          * - The markers onto the map
-        */
+         */
         buildLocationList(dataGeoJSON);
         addMarkers();
-      };
-
+      });
+      
       /**
        * Add a marker to the map for every provider listing.
-      **/
+       **/
       function addMarkers() {
         /* For each feature in the GeoJSON object above: */
         dataGeoJSON.features.forEach(function(marker) {
@@ -239,17 +229,17 @@ function closeNav() {
           /**
            * Create a marker using the div element
            * defined above and add it to the map.
-          **/
+           **/
           new mapboxgl.Marker(el, { offset: [0, -23] })
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-
+          .setLngLat(marker.geometry.coordinates)
+          .addTo(map);
+          
           /**
            * Listen to the element and when it is clicked, do three things:
            * 1. Fly to the point
            * 2. Close all other popups and display popup for clicked provider
            * 3. Highlight listing in sidebar (and remove highlight for all other listings)
-          **/
+           **/
           el.addEventListener('click', function(e){
             /* Fly to the point */
             flyToProvider(marker);
@@ -270,12 +260,12 @@ function closeNav() {
       /**
        * Add a listing for each provider to the sidebar.
       **/
-      function buildLocationList(data) {
+      function buildLocationList(dataGeoJSON) {
         var x = document.getElementById("listings");
           if (x.style.display === "none") {
           x.style.display = "block";
           }
-        data.features.forEach(function(dataGeoJSON, i){
+        dataGeoJSON.features.forEach(function(dataGeoJSON, i){
           /**
            * Create a shortcut for `provider.properties`,
            * which will be used several times below.
@@ -312,9 +302,9 @@ function closeNav() {
            * 4. Highlight listing in sidebar (and remove highlight for all other listings)
           **/
           link.addEventListener('click', function(e){
-            for (var i=0; i < data.features.length; i++) {
-              if (this.id === "link-" + data.features[i].properties.id) {
-                var clickedListing = data.features[i];
+            for (var i=0; i < dataGeoJSON.features.length; i++) {
+              if (this.id === "link-" + dataGeoJSON.features[i].properties.id) {
+                var clickedListing = dataGeoJSON.features[i];
                 flyToProvider(clickedListing);
                 createPopUp(clickedListing);
               }
@@ -351,8 +341,7 @@ function closeNav() {
             '<h4>' + currentFeature.properties.provider_City + '</h4>')
           .addTo(map);
       }
-  });
-
+  
 //https://docs.mapbox.com/mapbox.js/example/v1.0.0/map-center-geocoding/
 // var geocoder = L.mapbox.geocoder('mapbox.places');
 
@@ -370,4 +359,4 @@ function closeNav() {
 // } else if (data.latlng) {
 //     map.setView([data.latlng[0], data.latlng[1]], 13);
 // }
-// }
+//}
