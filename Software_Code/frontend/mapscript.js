@@ -192,7 +192,7 @@ function closeNav() {
             map.addSource("dataGeoJSON", {
               "type": "geojson",
               "data": dataGeoJSON,
-              //"properties.id": i++
+              "properties.id": i++
             });
 
             /**
@@ -209,13 +209,14 @@ function closeNav() {
            * Add a marker to the map for every provider listing.
            **/
           function addMarkers() {
-            
+          var i = 0;
             /* For each feature in the GeoJSON object above: */
           dataGeoJSON.features.forEach(function(marker) {
           /* Create a div element for the marker. */
           var el = document.createElement('div');
           /* Assign a unique `id` to the marker. */
-          el.id = "marker-" + marker.properties.id;
+          el.id = "marker-" + i;
+          i++;
           /* Assign the `marker` class to each marker for styling. */
           el.className = 'marker';
           
@@ -278,14 +279,14 @@ function closeNav() {
           link.href = '#';
           link.className = 'title';
           link.id = "link-" + prop.id;
-          link.innerHTML = prop.provider_City;
+          link.innerHTML = prop.procedure_Def + '   $' + prop.avg_Total_Payments;
 
           /* Add details to the individual listing. */
           var details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = prop.avg_Total_Payments;
-          if (prop.dataGeoJSON_StreetAdd) {
-            details.innerHTML += ' · ' + prop.provider_Name;
-          }
+          details.innerHTML = prop.provider_Name;
+          //if (prop.dataGeoJSON_StreetAdd) {
+            details.innerHTML += ' · ' + prop.provider_City;
+          //}
 
           /**
            * Listen to the element and when it is clicked, do four things:
@@ -330,8 +331,8 @@ function closeNav() {
         if (popUps[0]) popUps[0].remove();
         var popup = new mapboxgl.Popup({closeOnClick: false})
           .setLngLat(currentFeature.geometry.coordinates)
-          .setHTML('<h3>Sweetgreen</h3>' +
-            '<h4>' + currentFeature.properties.provider_City + '</h4>')
+          .setHTML('<h3>' + currentFeature.properties.provider_Name +'</h3>' +
+            '<h4>' + '$' + currentFeature.properties.avg_Medicare_Payments + '</h4>')
           .addTo(map);
       }
     
