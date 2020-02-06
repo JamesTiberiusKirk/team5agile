@@ -41,16 +41,43 @@ router.get('/providers', (req, res) => {
 
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
+    let sortByCol, sortType, filtDist;
     if (queryParams) {
-        let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Covered_Charges","ASC");`
+        let splitString = queryParams.split("&");
+        if (splitString.length > 1) {
+            let part1 = splitString[1].split("=");
+            if (part1[0] = "sort") {
+                sortByCol = part1[1].split(",")[0];
+                if (sortByCol == "Price") {
+                    sortByCol = "avg_Covered_Charges";
+                }
+                sortType = part1[1].split(",")[1];
+            } else if (part1[0] = "dist") {
+                filtDist = part1;
+            }
+            if (splitString.length > 2) {
+                let part2 = splitString[2].split("=");
+                if (part1[0] = "sort") {
+                    sortByCol = part1[1].split(",")[0];
+                    sortType = part1[1].split(",")[1];
+                } else if (part1[0] = "dist") {
+                    filtDist = part1;
+                }
+            }   
+        }
+        console.log(`Sort by column: ${sortByCol}, sort type: ${sortType}`)
+        if (sortByCol != null && sortType != null) {
+            let sql = `CALL sortRefineOptions("${splitString[0]}","${splitString[0]}","","","${sortByCol}","${sortType}");`
+        } else {
+            let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Medicare_Payments","ASC");`
+        }
+        
         db.conn.query(sql, (err, procResult) => {
             if (err) {
                 res.status(500).send(err);
                 return console.log(`[GET] /procedures error: ${err}`);
             }
 
-            //check for aditional params to filter based on location
-            // if (req.query.rad && req.query.zip) {
             if (req.query.rad && req.query.lat && req.query.long) {
                 let sql = `SELECT * FROM healthcare.zip_coords;`;
                 db.conn.query(sql, (err, zip2CoordsRes) => {
@@ -58,13 +85,8 @@ router.get('/procedures', (req, res) => {
                         res.status(500).send(err);
                         return console.log(`[GET] / error: ${req.query.rad}`);
                     }
-
-                    // zip2CoordsRes[0].forEach((c) => {
-
-                    // });
                     let locArr = [];
                     procResult[0].forEach(p => {
-                        // console.log((zip2CoordsRes));
                         let coords = zip2CoordsRes.find(z => z.zip_Code == p.provider_Zip);
 
                         if (!coords) return// console.log(`Nothing found for ${p.provider_Zip}`)
@@ -82,6 +104,13 @@ router.get('/procedures', (req, res) => {
                             locArr.push(newProc);
                         }
                     });
+                    if (req.query.distance_sort == 'true') {
+                        locArr.sort((a, b) => {
+                            if (a.distance > b.distance) return 1;
+                            if (a.distance < b.distance) return -1;
+                            return 0;
+                        })
+                    }
                     res.status(200).send(locArr);
                 });
 
@@ -90,14 +119,14 @@ router.get('/procedures', (req, res) => {
                 let price_min = req.query.price_min;
                 let price_max = req.query.price_max;
                 procResult[0].forEach((p) => {
-                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max ){
+                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max) {
                         procArr.push(p);
                     }
                 });
                 res.status(200).send(procArr);
             } else {
                 res.status(200).send(procResult[0]);
-            } // else not all params provided 
+            }
 
         });
     } else {
