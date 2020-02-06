@@ -21,4 +21,4 @@ VIEW `options` AS
         (((`costs`
         JOIN `procedure` ON ((`costs`.`procedure_ID` = `procedure`.`procedure_ID`)))
         JOIN `provider` ON ((`costs`.`provider_ID` = `provider`.`provider_ID`)))
-        JOIN `zip_coords` ON ((`provider`.`provider_Zip` = `zip_coords`.`zip_Code`)))
+        INNER JOIN `zip_coords` ON ((`provider`.`provider_Zip` = `zip_coords`.`zip_Code`)))
