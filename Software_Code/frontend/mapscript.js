@@ -307,15 +307,16 @@ geolocate.on('geolocate', function(e) {
       }
     ]
   };
-      
+
+  
   /**
    * Assign a unique id to each provider. You'll use this `id`
    * later to associate each point on the map with a listing
    * in the sidebar.
   */
-  provider.features.forEach(function(provider, i){
-    provider.properties.id = i;
-  });
+  // provider.features.forEach(function(provider, i){
+  //   provider.properties.id = i;
+  // });
 
   /**
    * Wait until the map loads to make changes to the map.
