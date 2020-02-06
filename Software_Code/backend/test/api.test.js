@@ -19,7 +19,7 @@ describe('Tests the API', () => {
     this.db = new Db()
     this.db.initConnection()
       .then(() => {
-        this.app = new Server(this.db).app;
+        this.app = new Server(this.db,3001).app;
         done();
       })
       .catch((err) => {
