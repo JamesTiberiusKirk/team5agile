@@ -9,8 +9,9 @@ function log(req, res) {
 }
 
 class Server {
-  constructor(db) {
+  constructor(db, port) {
     this.db = db;
+    this.port = port;
     this.app = express();
     this.initMiddleware();
     this.initRoutes();
@@ -38,8 +39,8 @@ class Server {
   }
 
   inirServer() {
-    let server = this.app.listen(3000, () => {
-      console.log(`Example app listening at port 3000`);
+    let server = this.app.listen(this.port, () => {
+      console.log(`Example app listening at port ${this.port}`);
     });
   }
 }

@@ -11,12 +11,12 @@ class Db {
             this.conn = mysql.createConnection(db_config);
             this.handleConnection()
                 .then(() => {
-                    // this.handleError();
                     resolve();
                 })
                 .catch((err) => {
                     reject(err);
                 });
+            this.handleError();
         });
     }
 
@@ -37,22 +37,22 @@ class Db {
 
     closeConn() {
         return new Promise((resolve) => {
-            this.conn.end(()=>{
+            this.conn.end(() => {
                 console.log('MySql conn closed.')
                 resolve();
             });
         })
     }
 
-    //     handleError(){
-    //         this.conn.on('error',(err)=>{
-    //             if(err.code === 'PROTOCOL_CONNECTION_LOST') {
-    //                 this.initConnection();
-    //             } else {
-    //                 throw err;
-    //             }
-    //         });
-    //     }
+    handleError() {
+        this.conn.on('error', (err) => {
+            // if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+                this.initConnection();
+            // } else {
+                // throw err;
+            // }
+        });
+    }
 }
 
 module.exports = { Db };
