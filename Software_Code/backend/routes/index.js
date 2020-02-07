@@ -44,9 +44,11 @@ router.get('/procedures', (req, res) => {
     let sortByCol = req.query.sort_by; 
     let sortType = req.query.sort_type; 
     if (queryParams) {
+
         if (!sortByCol) sortByCol = 'avg_Medicare_Payments';
         if (!sortType) sortType = 'ASC';
         let sql = `CALL getProcedures('${queryParams}','${sortByCol}','${sortType}');`;
+
         db.conn.query(sql, (err, procResult) => {
             if (err) {
                 res.status(500).send(err);
