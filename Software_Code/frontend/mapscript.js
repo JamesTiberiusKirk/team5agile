@@ -21,7 +21,8 @@ function closeNav() {
       */
       var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v10',
+        //style: 'mapbox://styles/mapbox/light-v10',
+        style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.5795, 39.8283],
         zoom: 4,
         scrollZoom: false
@@ -77,17 +78,17 @@ function closeNav() {
  
      
  
-        function insert(prov) {
+        // function insert(prov) {
           
-        var div = document.getElementById('container');
-        var child_div = document.createElement('div');
-        var pro_name = prov.procedure_Def;
-        var prov_name = prov.provider_Name;
-        var pro_price = prov.avg_Medicare_Payments;
-        child_div.innerHTML = `<p>${prov_name}: ${pro_name}: ${pro_price} </p>`;
-        div.appendChild(child_div)
+        // var div = document.getElementById('container');
+        // var child_div = document.createElement('div');
+        // var pro_name = prov.procedure_Def;
+        // var prov_name = prov.provider_Name;
+        // var pro_price = prov.avg_Medicare_Payments;
+        // child_div.innerHTML = `<p>${prov_name}: ${pro_name}: ${pro_price} </p>`;
+        // div.appendChild(child_div)
 
-      }
+      // }
 
       function getProcedures() {
         var url = `https://api.team5agile.dumitruvulpe.com`;
@@ -101,7 +102,7 @@ function closeNav() {
           .then((data) => {
             //console.log(data)
             data.forEach(e => {
-              insert(e)
+              // insert(e)
               searchForProviderZip(e.provider_Zip)
               .then((res) => {
                 //do smth with res
@@ -145,6 +146,7 @@ function closeNav() {
         var i = 0;
         var output;
         
+        
         const createGeoJSON = (data, e, res) => {
           //  console.log("data")
           //  console.log(data) //all procedures in array
@@ -186,19 +188,21 @@ function closeNav() {
           /**
            * Wait until the map loads to make changes to the map.
            */
-          
+          var mappy;
           //map.on('load', function () {
 
-          if(map.getSource(dataGeoJSON)){
-            map.removeSource(dataGeoJSON);
-          }
-           
-            map.addSource("dataGeoJSON", {
-              type: "geojson",
-              data: dataGeoJSON,
-              "properties.id": i++
-            });
+          // if(map.getSource(dataGeoJSON)){
+          //   map.removeSource(dataGeoJSON);
+          // }
+          //   var dataGeo;
+          //   map.addSource("dataGeo", {
+          //     type: "geojson",
+          //     data: dataGeoJSON,
+          //     mappy: "happy"
+          //   });
 
+            // console.log("mappy = " + mappy)
+            // console.log(dataGeo)
             /**
              * Add all the things to the page:
              * - The location listings on the side of the page
@@ -301,7 +305,7 @@ function closeNav() {
           **/
           link.addEventListener('click', function(e){
             //for (var i=0; i < 5; i++) {
-              if (this.id === "link-" + dataGeoJSON.properties.id) {
+              if (this.id === "link-" + prop.id) {
                 var clickedListing = dataGeoJSON;
                 flyToProvider(clickedListing);
                 createPopUp(clickedListing);
@@ -323,7 +327,7 @@ function closeNav() {
       function flyToProvider(currentFeature) {
         map.flyTo({
           center: currentFeature.geometry.coordinates,
-          zoom: 10
+          zoom: 5
         });
       }
 
@@ -333,7 +337,7 @@ function closeNav() {
       function createPopUp(currentFeature) {
         var popUps = document.getElementsByClassName('mapboxgl-popup');
         if (popUps[0]) popUps[0].remove();
-        var popup = new mapboxgl.Popup({closeOnClick: false})
+        var popup = new mapboxgl.Popup({closeOnClick: true})
           .setLngLat(currentFeature.geometry.coordinates)
           .setHTML('<h3>' + currentFeature.properties.provider_Name +'</h3>' +
             '<h4>' + '$' + currentFeature.properties.avg_Medicare_Payments + '</h4>')
