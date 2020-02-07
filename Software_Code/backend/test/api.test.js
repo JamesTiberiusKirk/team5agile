@@ -46,20 +46,6 @@ describe('Tests the API', () => {
       })
   });
 
-  // it('GET /procedures based on price filtering', (done) => {
-  //   request(this.app)
-  //     .get(`/procedures?search_query=293&price_min=1000&price_max=4000`)
-  //     .expect(200)
-  //     .then((res) => {
-  //       let body = res.body;
-  //       expect(body).to.be.array();
-  //       expect(body).to.be.eql(proc_price_filter)
-  //       done();
-  //     }).catch((err) => {
-  //       done(err);
-  //     });
-  // });
-
   it('GET /procedures based on location', (done) => {
     request(this.app)
       .get('/procedures?search_query=293&rad=100&lat=34.196159&long=-86.196898')
