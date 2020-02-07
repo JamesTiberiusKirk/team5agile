@@ -99,28 +99,26 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h5>Search for Procedure: <input type="text" id="place" value=""> <button id="submitButton"
-              class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures(); displaySort()">Submit</button>
-              <div class="sort" id="sort" style="display:none">
-                <div class="btn-group" style="">
-                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Sort by</button>
-                  <div class="dropdown-menu"> <a class="dropdown-item" href="#">Price: Low to High</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Price: High to Low</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">Distance: Closest to Furthest</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Distance: Furthest to Closest</a>
-                  </div>
-                </div>
-                <div class="btn-group" style="">
-                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true"> Distance</button>
-                  <div class="dropdown-menu"> <a class="dropdown-item" href="#">5 miles</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">10 miles</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" style="">20 miles</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">50 miles</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" contenteditable="true">100 miles</a>
-                  </div>
-                </div>
+
+          <h5>Search for Procedure: <input type="text" id="place" value=""> <button id="submitButton" class="btn navbar-btn mx-2 btn-outline-success" onclick="getProcedures()">Submit</button>
+              <div class="sort">
+                <select id="sortDrop" class="browser-default custom-select">
+                  <option selected>Sort by</option>
+                  <option value="Price,ASC">Price: Low to High</option>
+                  <option value="Price,DESC">Price: High to Low</option>
+                  <option value="Distance,ASC">Distance: Closest to Furthest</option>
+                  <option value="Distance,DESC">Distance: Furthest to Closest</option>
+                </select>
+              </div>
+              <div class="filter"></div>
+                <select id="filterDrop" class="browser-default custom-select">
+                  <option selected>Distance</option>
+                  <option value="5">5 miles</option>
+                  <option value="10">10 miles</option>
+                  <option value="20">20 miles</option>
+                  <option value="50">50 miles</option>
+                </select>
+
               </div>
             </h5>
 
@@ -136,6 +134,7 @@
 
           <div id="container"></div>
           <script>
+
             function displaySort() {
               if(document.getElementById("sort").style.display = "none") {
                 document.getElementById("sort").style.display = "inline";
@@ -160,8 +159,20 @@
               var url = `https://api.team5agile.dumitruvulpe.com`;
               var pro_uri = `/procedures/?search_query=`;
               var procedureName = document.getElementById("place").value;
-
-              fetch(url + pro_uri + procedureName)
+              //var sortType = document.getElementById("sortDrop").value;
+              var sortDrop = document.getElementById("sortDrop");
+              var sortType = sortDrop.options[sortDrop.selectedIndex].value;
+              var filterDrop = document.getElementById("filterDrop");
+              var filterDist = filterDrop.options[filterDrop.selectedIndex].value;
+              var query = procedureName;
+              if (sortType != "Sort by") {
+                query = query + "&sort=" + sortType;
+              }
+              if (filterDist != "Distance") {
+                query = query + "&dist=" + filterDist;
+              }
+              console.log(query);
+              fetch(url + pro_uri + query)
                 .then((res) => {
                   return res.json();
                 })
@@ -265,7 +276,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>>>>>>>> master
+146
+
 
 
 

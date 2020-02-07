@@ -41,8 +41,13 @@ router.get('/providers', (req, res) => {
 
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
+    let sortByCol = req.query.sort_by; 
+    let sortType = req.query.sort_type; 
     if (queryParams) {
-        let sql = `CALL getProcedures('${queryParams}','avg_Medicare_Payments','ASC');`
+
+        if (!sortByCol) sortByCol = 'avg_Medicare_Payments';
+        if (!sortType) sortType = 'ASC';
+        let sql = `CALL getProcedures('${queryParams}','${sortByCol}','${sortType}');`;
 
         db.conn.query(sql, (err, procResult) => {
             if (err) {
