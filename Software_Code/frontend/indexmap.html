@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8' />
-    <title>Store Locator</title>
-    <meta name='robots' content='noindex, nofollow'>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css">
 
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
-      type="text/css"
-    />
+<head>
+  <meta charset='utf-8' />
+  <title>Store Locator</title>
+  <meta name='robots' content='noindex, nofollow'>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
-  </head>
-  <body> 
-   <div class='sidebar'>
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css" />
+
+  <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
+</head>
+
+<body>
+  <div class='sidebar'>
     <!-- The overlay -->
     <div id="myNav" class="overlay">
 
@@ -31,29 +32,31 @@
       <div class="overlay-content">
         <div class='heading'>
           <h1>
-              <!-- Button to close the overlay navigation -->
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr; Edit Search </a>
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&larr; Edit Search </a>
           </h1>
         </div>
         <div id='listings' class='listings'></div>
       </div>
 
     </div>
-  
-       
-       <div class="py-4" style="">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <form id="c_form-h" class="" style="" onSubmit="return false;">
-                <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
-                  <div class="col-10">
-                    <div class="form-group row">
-                      <div class="col-10"><input type="text" class="form-control" id="inputnameid" placeholder="Treatment name / Treatment ID"></div>
-                    </div>
+
+
+    <div class="py-4" style="">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="c_form-h" class="" style="" onSubmit="return false;">
+              <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">Treatment</label>
+                <div class="col-10">
+                  <div class="form-group row">
+                    <div class="col-10"><input type="text" class="form-control" id="inputnameid"
+                        placeholder="Treatment name / Treatment ID"></div>
                   </div>
                 </div>
-                
+              </div>
+
+              <div class="text-drop">
                 <div class="sort">
                   <select id="sortDrop" class="browser-default custom-select">
                     <option selected>Sort by</option>
@@ -63,44 +66,56 @@
                     <option value="Distance,DESC">Distance: Furthest to Closest</option>
                   </select>
                 </div>
+              </div>
+              <div class="text-drop">
                 <div class="filter"></div>
-                  <select id="filterDrop" class="browser-default custom-select">
-                    <option selected>Distance</option>
-                    <option value="50">50 miles</option>
-                    <option value="100">100 miles</option>
-                    <option value="200">200 miles</option>
-                    <option value="500">500 miles</option>
-                  </select>
-                </div>
-              </h5>
-
-                <!-- Use any element to open/show the overlay navigation menu -->
-                <span onclick="openNav()"><button class="submit-button" id="submit-button" onclick="getProcedures()"><a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a></button></span>
-              </form>
-
-            <h5>Please enable your live location to search with distance parameters</h5>
-
-              <script>
-                var input = document.getElementById("inputnameid");
-                input.addEventListener("keydown", function (event) {
-                  if (event.keyCode === 13) {
-                    event.preventDefault();
-                    document.getElementById("submit-button").click();
-                  }
-                });
-              </script>
-    
-              <div id="container"></div>
-
-            
-            </div>
+                <select id="filterDrop" class="browser-default custom-select">
+                  <option selected>Distance</option>
+                  <option value="50">50 miles</option>
+                  <option value="100">100 miles</option>
+                  <option value="200">200 miles</option>
+                  <option value="500">500 miles</option>
+                </select>
+              </div>
           </div>
+
+
+
+          <!-- Use any element to open/show the overlay navigation menu -->
+
+          <div class="text-center">
+            <span onclick="openNav()">
+              <button class="submit-button" id="submit-button" onclick="getProcedures()">
+                <a class="btn navbar-btn btn-outline-primary pl-4 pr-4" href="#register">Submit</a>
+              </button>
+            </span>
+          </div>
+          </form>
+          <div class="text-center">
+            <h5>Please enable your live location to search with distance parameters.</h5>
+          </div>
+          <script>
+            var input = document.getElementById("inputnameid");
+            input.addEventListener("keydown", function (event) {
+              if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("submit-button").click();
+              }
+            });
+          </script>
+
+          <div id="container"></div>
+
+
         </div>
-      </div> 
+      </div>
     </div>
-    <div id='map' class='map'></div>
-    <div id="geocoder" class="geocoder"></div>
-    <script src="mapscript.js"></script>
-    
-  </body>
+  </div>
+  </div>
+  <div id='map' class='map'></div>
+  <div id="geocoder" class="geocoder"></div>
+  <script src="mapscript.js"></script>
+
+</body>
+
 </html>

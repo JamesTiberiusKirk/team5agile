@@ -1109,3 +1109,12 @@
   width: 100%;
 }
 
+.text-center {
+  text-align: center !important; 
+  margin-top: 35px;
+}
+
+.text-drop {
+  margin-top: 10px;
+  font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+}
