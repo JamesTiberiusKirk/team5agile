@@ -68,12 +68,17 @@ function closeNav() {
         });
 
       document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-
+      
+      var lat,lon;
       geolocate.on('geolocate', function(e) {
-            var lon = e.coords.longitude;
-            var lat = e.coords.latitude
-            var position = [lon, lat];
-            console.log(position);
+            lon = e.coords.longitude;
+            lat = e.coords.latitude
+            // var position = [lon, lat];
+            // console.log(position);
+            map.flyTo({
+              center:[lon,lat],
+              zoom:5
+            })
       });
  
      
@@ -91,36 +96,54 @@ function closeNav() {
       // }
 
       function getProcedures() {
-        var url = `https://api.team5agile.dumitruvulpe.com`;
-        var pro_uri = `/procedures/?search_query=`;
+        var url = `https://api.team5agile.dumitruvulpe.com/procedures?search_query=`;
         var procedureName = document.getElementById("inputnameid").value;
-
-        fetch(url + pro_uri + procedureName)
+        //var sortType = document.getElementById("sortDrop").value;
+        var sortDrop = document.getElementById("sortDrop");
+        var sortType = sortDrop.options[sortDrop.selectedIndex].value;
+        var filterDrop = document.getElementById("filterDrop");
+        var filterDist = filterDrop.options[filterDrop.selectedIndex].value;
+        let query;
+        if (sortType != "Sort by") {
+          query = `${url}${procedureName}${sortType}`;
+        }
+        if (filterDist != "Distance") {
+          // query = query + "&rad=" + filterDist;
+          // navigator.geolocation.getCurrentPosition(function(position) {
+          //   console.log(position)
+          // });
+          query = `${url}${procedureName}&rad=${filterDist}&lat=${lat}&long=${lon}&distance_sort=true`;
+          console.log("https://api.team5agile.dumitruvulpe.com/procedures?search_query=293&rad=100&lat=34.557662&long=-85.79649&distance_sort=true")
+          console.log(query);
+        }
+        console.log(query);
+        fetch(query)
           .then((res) => {
             return res.json();
           })
           .then((data) => {
-            //console.log(data)
+            console.log(data)
             data.forEach(e => {
-              // insert(e)
+              //insert(e)
               searchForProviderZip(e.provider_Zip)
-              .then((res) => {
-                //do smth with res
-                //console.log('resolve')
-                createGeoJSON(data, e, res)
-                mapWait(dataGeoJSON)
-              }).catch((err) => {
-                console.log('reject')
-                console.log(err)
-                //deal with err
-              });
+                .then((res) => {
+                  //do smth with res
+                  //console.log('resolve')
+                  createGeoJSON(data, e, res)
+                  // console.log(output)
+                  mapWait(dataGeoJSON)
+                }).catch((err) => {
+                  console.log('reject')
+                  console.log(err)
+                  //deal with err
+                });
             });
           })
           .catch((error) => {
             console.log(error)
           });
-          
-        }
+
+      }
         
         function searchForProviderZip(zip_code) {
           return new Promise((resolve, reject) => {
@@ -287,7 +310,7 @@ function closeNav() {
           link.href = '#';
           link.className = 'title';
           link.id = "link-" + prop.id;
-          link.innerHTML = prop.procedure_Def + '   $' + prop.avg_Total_Payments;
+          link.innerHTML = prop.procedure_Def + '   $' + prop.avg_Medicare_Payments;
 
           /* Add details to the individual listing. */
           var details = listing.appendChild(document.createElement('div'));
