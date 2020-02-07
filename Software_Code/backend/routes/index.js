@@ -41,37 +41,12 @@ router.get('/providers', (req, res) => {
 
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
-    let sortByCol, sortType, filtDist;
+    let sortByCol = req.query.sort_by; 
+    let sortType = req.query.sort_type; 
     if (queryParams) {
-        let splitString = queryParams.split("&");
-        if (splitString.length > 1) {
-            let part1 = splitString[1].split("=");
-            if (part1[0] = "sort") {
-                sortByCol = part1[1].split(",")[0];
-                if (sortByCol == "Price") {
-                    sortByCol = "avg_Covered_Charges";
-                }
-                sortType = part1[1].split(",")[1];
-            } else if (part1[0] = "dist") {
-                filtDist = part1;
-            }
-            if (splitString.length > 2) {
-                let part2 = splitString[2].split("=");
-                if (part1[0] = "sort") {
-                    sortByCol = part1[1].split(",")[0];
-                    sortType = part1[1].split(",")[1];
-                } else if (part1[0] = "dist") {
-                    filtDist = part1;
-                }
-            }   
-        }
-        console.log(`Sort by column: ${sortByCol}, sort type: ${sortType}`)
-        if (sortByCol != null && sortType != null) {
-            let sql = `CALL sortRefineOptions("${splitString[0]}","${splitString[0]}","","","${sortByCol}","${sortType}");`
-        } else {
-            let sql = `CALL sortRefineOptions("${queryParams}","${queryParams}","","","avg_Medicare_Payments","ASC");`
-        }
-        
+        if (!sortByCol) sortByCol = 'avg_Medicare_Payments';
+        if (!sortType) sortType = 'ASC';
+        let sql = `CALL getProcedures('${queryParams}','${sortByCol}','${sortType}');`;
         db.conn.query(sql, (err, procResult) => {
             if (err) {
                 res.status(500).send(err);
