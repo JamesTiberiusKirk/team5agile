@@ -41,8 +41,8 @@ router.get('/providers', (req, res) => {
 
 router.get('/procedures', (req, res) => {
     let queryParams = req.query.search_query;
-    let sortByCol = req.query.sort_by; 
-    let sortType = req.query.sort_type; 
+    let sortByCol = req.query.sort_by;
+    let sortType = req.query.sort_type;
     if (queryParams) {
 
         if (!sortByCol) sortByCol = 'avg_Medicare_Payments';
@@ -92,15 +92,13 @@ router.get('/procedures', (req, res) => {
                 });
 
             } else if (req.query.price_min && req.query.price_max) {
-                let procArr = [];
+                let tmpArr = [];
                 let price_min = req.query.price_min;
                 let price_max = req.query.price_max;
                 procResult[0].forEach((p) => {
-                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max) {
-                        procArr.push(p);
-                    }
+                    if (price_min <= p.avg_Medicare_Payments && p.avg_Medicare_Payments <= price_max) tmpArr.push(p); 
                 });
-                res.status(200).send(procArr);
+                res.status(200).send(tmpArr);
             } else {
                 res.status(200).send(procResult[0]);
             }
